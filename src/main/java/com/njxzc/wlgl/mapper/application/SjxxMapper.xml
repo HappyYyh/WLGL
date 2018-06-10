@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.application.SjxxMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.application.Sjxx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="DriverName" property="driverName" jdbcType="VARCHAR" />
+    <result column="IDCard" property="IDCard" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Gender" property="gender" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="CarNO" property="carNO" jdbcType="VARCHAR" />
+    <result column="AllowCarryVolume" property="allowCarryVolume" jdbcType="VARCHAR" />
+    <result column="AllowCarryWeight" property="allowCarryWeight" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="CarType" property="carType" jdbcType="VARCHAR" />
+    <result column="CarLength" property="carLength" jdbcType="VARCHAR" />
+    <result column="CarDept" property="carDept" jdbcType="VARCHAR" />
+    <result column="CarDeptTel" property="carDeptTel" jdbcType="VARCHAR" />
+    <result column="DriveLicence" property="driveLicence" jdbcType="VARCHAR" />
+    <result column="RunLicence" property="runLicence" jdbcType="VARCHAR" />
+    <result column="BizLicence" property="bizLicence" jdbcType="VARCHAR" />
+    <result column="InsuranceCard" property="insuranceCard" jdbcType="VARCHAR" />
+    <result column="CarWidth" property="carWidth" jdbcType="VARCHAR" />
+    <result column="GoodsHeight" property="goodsHeight" jdbcType="VARCHAR" />
+    <result column="CarFrameNO" property="carFrameNO" jdbcType="VARCHAR" />
+    <result column="EngineNO" property="engineNO" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="CompanyCar" property="companyCar" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, DriverName, IDCard, Phone, Mobile, Gender, Birthday, State, CarNO, AllowCarryVolume, 
+    AllowCarryWeight, Address, CarType, CarLength, CarDept, CarDeptTel, DriveLicence, 
+    RunLicence, BizLicence, InsuranceCard, CarWidth, GoodsHeight, CarFrameNO, EngineNO, 
+    Remark, CompanyCar
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_27_sjxx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_27_sjxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.application.Sjxx" >
+    insert into t_27_sjxx ( DriverName, IDCard,
+      Phone, Mobile, Gender, 
+      Birthday, State, CarNO, 
+      AllowCarryVolume, AllowCarryWeight, Address, 
+      CarType, CarLength, CarDept, 
+      CarDeptTel, DriveLicence, RunLicence, 
+      BizLicence, InsuranceCard, CarWidth, 
+      GoodsHeight, CarFrameNO, EngineNO, 
+      Remark, CompanyCar)
+    values ( #{driverName,jdbcType=VARCHAR}, #{IDCard,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{carNO,jdbcType=VARCHAR}, 
+      #{allowCarryVolume,jdbcType=VARCHAR}, #{allowCarryWeight,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{carType,jdbcType=VARCHAR}, #{carLength,jdbcType=VARCHAR}, #{carDept,jdbcType=VARCHAR}, 
+      #{carDeptTel,jdbcType=VARCHAR}, #{driveLicence,jdbcType=VARCHAR}, #{runLicence,jdbcType=VARCHAR}, 
+      #{bizLicence,jdbcType=VARCHAR}, #{insuranceCard,jdbcType=VARCHAR}, #{carWidth,jdbcType=VARCHAR}, 
+      #{goodsHeight,jdbcType=VARCHAR}, #{carFrameNO,jdbcType=VARCHAR}, #{engineNO,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{companyCar,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.application.Sjxx" >
+    update t_27_sjxx
+    <set >
+      <if test="driverName != null and driverName!=''" >
+        DriverName = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="IDCard != null and IDCard!=''" >
+        IDCard = #{IDCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone!=''" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null and mobile!=''" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null and gender!=''" >
+        Gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null and birthday!=''" >
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state!=''" >
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="carNO != null and carNO!=''" >
+        CarNO = #{carNO,jdbcType=VARCHAR},
+      </if>
+      <if test="allowCarryVolume != null and allowCarryVolume!=''" >
+        AllowCarryVolume = #{allowCarryVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="allowCarryWeight != null and allowCarryWeight!=''" >
+        AllowCarryWeight = #{allowCarryWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address!=''" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null and carType!=''" >
+        CarType = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carLength != null and carLength!=''" >
+        CarLength = #{carLength,jdbcType=VARCHAR},
+      </if>
+      <if test="carDept != null and carDept!=''" >
+        CarDept = #{carDept,jdbcType=VARCHAR},
+      </if>
+      <if test="carDeptTel != null and carDeptTel!=''" >
+        CarDeptTel = #{carDeptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="driveLicence != null and driveLicence!=''" >
+        DriveLicence = #{driveLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="runLicence != null and runLicence!=''" >
+        RunLicence = #{runLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="bizLicence != null and bizLicence!=''" >
+        BizLicence = #{bizLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCard != null and insuranceCard!=''" >
+        InsuranceCard = #{insuranceCard,jdbcType=VARCHAR},
+      </if>
+      <if test="carWidth != null and carWidth!=''" >
+        CarWidth = #{carWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsHeight != null and goodsHeight!=''" >
+        GoodsHeight = #{goodsHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="carFrameNO != null and carFrameNO!=''" >
+        CarFrameNO = #{carFrameNO,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNO != null and engineNO!=''" >
+        EngineNO = #{engineNO,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark!=''" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCar != null and companyCar!=''" >
+        CompanyCar = #{companyCar,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAll" resultType="com.njxzc.wlgl.pojo.application.Sjxx">
+    select 
+    <include refid="Base_Column_List"/>
+    from t_27_sjxx
+  </select>
+</mapper>
