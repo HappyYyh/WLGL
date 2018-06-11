@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>职员信息添加/修改</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                职员信息增加
+            </ul>
+        </div>
+        <div id="SjxxAddMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <!--需要区分是修改还是添加-->
+        <form action="/application/zyxx" method="post">
+            <!--发送put请求发送数据-->
+            <!--
+            1、SpringMvc中配置HiddenHttpMethodFilter(Springboot自动配置好的)
+            2、页面创建一个post表单
+            3、创建一个input项，name="_method"值就是我们指定的方式
+            -->
+            <input type="hidden" name="_method" value="put" th:if="${ZY!=null}"/>
+            <input type="hidden" name="id" th:if="${ZY!=null}" th:value="${ZY.id}"/>
+            <div id="left" style="width: 33%;float: left">
+                <span>职员编号：</span><input type="text" name="employeeCode" placeholder="请输入职员编号" th:value="${ZY!=null}?${ZY.employeeCode}"/><br>
+                <span>职员姓名：</span><input type="text" name="employee" placeholder="请输入职员姓名" th:value="${ZY!=null}?${ZY.employee}"/><br>
+                <span>部  门：</span><input type="text" name="department" placeholder="请输入部门" th:value="${ZY!=null}?${ZY.department}"/><br>
+                <span>职  位：</span><input type="text" name="position" placeholder="请输入职位" th:value="${ZY!=null}?${ZY.position}"/><br>
+                <span>性  别：</span><input type="text" name="gender" placeholder="请输入性别" th:value="${ZY!=null}?${ZY.gender}"/><br>
+                <span>出生日期：</span><input type="text" name="birthday" placeholder="请输入出生日期" th:value="${ZY!=null}?${ZY.birthday}"/><br>
+                <input type="submit" class="btn btn-primary" th:value="${ZY!=null}?'修改':'添加'">
+            </div>
+            <div align="center">
+
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    !function () {
+        laydate.skin('molv');
+        laydate({elem: '#Calendar'});
+    }();
+
+</script>
+
+
+</body>
+</html>
