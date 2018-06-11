@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>司机信息查询</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                职员信息查询
+            </ul>
+        </div>
+        <div id="ZyxxQueryMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <div style="height: 60%">
+            <table align="center" border="1" width="80%" height="50%" >
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>职员编号</th>
+                    <th>职员姓名</th>
+                    <th>部    门</th>
+                    <th>职    位</th>
+                    <th>性    别</th>
+                    <th>出生日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="zyxx:${list}" >
+                        <td th:text="${zyxx.id}" align="center">${zyxx.id}</td>
+                        <td th:text="${zyxx.employeeCode}" align="center"></td>
+                        <td th:text="${zyxx.employee}" align="center"></td>
+                        <td th:text="${zyxx.department}" align="center"></td>
+                        <td th:text="${zyxx.position}" align="center"></td>
+                        <td th:text="${zyxx.gender}" align="center"></td>
+                        <td th:text="${zyxx.birthday}" align="center"></td>
+                        <td align="center">
+                            <a class="btn btn-small btn-primary" th:href="@{/application/zyxx/}+${zyxx.id}">编辑</a><br/>
+                            <form action="/application/ZyxxDelete" method="post">
+                                <input type="hidden" name="id" th:if="${zyxx.id!=null}" th:value="${zyxx.id}"/>
+                               <input type="submit" class="btn btn-small btn-primary"   th:value="删除"/>
+                            </form>
+                           <!-- <a class="btn btn-small btn-primary" th:href="@{/application/ZyxxDelete/}+${zyxx.id}">删除</a>-->
+                           <!-- <button  th:onclick="'del('+${zyxx.id}+')'" class="btn btn-small btn-danger">删除</button>
+                            <button th:attr="delete_url=@{/application/sjxx/}+${sjxx.id}" onclick="del()" class="btn btn-small btn-danger">删除</button>-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+<!--            <form id="deleteForm" action="/application/SjxxDelete" method="post">
+                &lt;!&ndash;<input type="hidden" name="_method" value="delete"/>&ndash;&gt;
+                <input type="hidden" name="id" id="deleteId"/>
+            </form>-->
+        </div>
+    </div>
+</div>
+
+
+
+<!--<script>
+    !function () {
+        laydate.skin('molv');
+        laydate({elem: '#Calendar'});
+    }();
+
+   /* function del() {
+        //alert($(this).attr("delete_uri"));
+        //删除当前司机信息
+        $("#deleteForm").attr("action",$(this).attr("delete_url")).submit();
+    }*/
+   function del(id) {
+       $("#deleteId").val(id);
+       $("#deleteForm").submit();
+   }
+</script>-->
+
+
+</body>
+</html>
