@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="D:/userlib/jdbc/mysql-connector-java-5.1.42-bin.jar" />
+    <classPathEntry location="D:/userlib/jar/mysql-connector-java-5.1.18-bin.jar" />
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -47,7 +47,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table  tableName="t_26_zyxx" domainObjectName="Zyxx" enableCountByExample="false"
+        <table  tableName="t_27_sjxx" domainObjectName="Sjxx" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />

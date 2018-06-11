@@ -13,7 +13,7 @@ import java.util.List;
 public class ZyxxServiceImpl implements ZyxxService {
 
 @Autowired
-    ZyxxMapper zyxxMapper;
+ZyxxMapper zyxxMapper;
 
     @Override
     public int insert(Zyxx zyxx) {

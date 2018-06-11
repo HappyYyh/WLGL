@@ -1,8 +1,6 @@
 package com.njxzc.wlgl.controller.application;
 
-import com.njxzc.wlgl.pojo.application.Sjxx;
 import com.njxzc.wlgl.pojo.application.Zyxx;
-import com.njxzc.wlgl.service.application.SjxxService;
 import com.njxzc.wlgl.service.application.ZyxxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
