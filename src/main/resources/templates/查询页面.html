@@ -14,11 +14,11 @@
 </head>
 
 <body>
- <div th:replace="~{index :: header}"></div>
+ <div th:replace="~{commons/bar :: header}"></div>
 
 
 <div id="middle">
-    <div th:replace="~{index :: left}"></div>
+    <div th:replace="~{commons/bar :: left}"></div>
     <div class="right" id="mainFrame">
 
         <div class="right_cont">
@@ -36,7 +36,7 @@
                         <td width="10%" align="right" bgcolor="#f1f1f1">到站：</td>
                         <td width="23%"><input type="text" name="" id="" class="span1-1"/></td>
                         <td width="10%" align="right" bgcolor="#f1f1f1">装车日期：</td>
-                        <td><input type="text" class="laydate-icon span1-1" id="Calendar" value="2015-08-25"/></td>
+                        <td><input type="text" class="laydate-icon span1-1" id="Calendar"/></td>
                     </tr>
                     <tr>
                         <td align="right" bgcolor="#f1f1f1">货单号：</td>

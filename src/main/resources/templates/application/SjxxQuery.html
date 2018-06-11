@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>司机信息查询</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+    <script type="text/javascript">
+        function showDetail(id) {
+            $("#Querydetail").show();
+            var url='/application/detail';
+            $.post(url,{id:id},function (sjxx) {
+                $("#driverName").text(sjxx.driverName);
+                $("#IDCard").text(sjxx.IDCard);
+                $("#phone").text(sjxx.phone);
+                $("#mobile").text(sjxx.mobile);
+                $("#gender").text(sjxx.gender);
+                $("#birthday").text(sjxx.birthday);
+                $("#state").text(sjxx.state);
+                $("#carNO").text(sjxx.carNO);
+                $("#allowCarryVolume").text(sjxx.allowCarryVolume);
+                $("#allowCarryWeight").text(sjxx.allowCarryWeight);
+                $("#address").text(sjxx.address);
+                $("#carType").text(sjxx.carType);
+                $("#carLength").text(sjxx.carLength);
+                $("#carDept").text(sjxx.carDept);
+                $("#carDeptTel").text(sjxx.carDeptTel);
+                $("#driveLicence").text(sjxx.driveLicence);
+                $("#runLicence").text(sjxx.runLicence);
+                $("#bizLicence").text(sjxx.bizLicence);
+                $("#insuranceCard").text(sjxx.insuranceCard);
+                $("#carWidth").text(sjxx.carWidth);
+                $("#goodsHeight").text(sjxx.goodsHeight);
+                $("#carFrameNO").text(sjxx.carFrameNO);
+                $("#engineNO").text(sjxx.engineNO);
+                $("#remark").text(sjxx.remark);
+                $("#companyCar").text(sjxx.companyCar);
+            });
+        }
+    </script>
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                司机信息查询
+            </ul>
+        </div>
+        <div id="SjxxQueryMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <div style="height: 60%">
+            <table align="center" border="1" width="80%" height="50%" >
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>司机名称</th>
+                    <th>手  机</th>
+                    <th>性  别</th>
+                    <th>出生日期</th>
+                    <th>车  号</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sjxx:${list}" >
+                        <td th:text="${sjxx.id}" align="center"></td>
+                        <td align="center">
+                            <a th:onclick="'showDetail('+${sjxx.id}+')'">[[${sjxx.driverName}]]</a>
+                        </td>
+                        <td th:text="${sjxx.mobile}" align="center"></td>
+                        <td th:text="${sjxx.gender}" align="center"></td>
+                        <td th:text="${sjxx.birthday}" align="center"></td>
+                        <td th:text="${sjxx.carNO}" align="center"></td>
+                        <td align="center">
+                            <a class="btn btn-small btn-primary" th:href="@{/application/sjxx/}+${sjxx.id}">编辑</a>
+                            <button  th:onclick="'del('+${sjxx.id}+')'" class="btn btn-small btn-danger">删除</button>
+                            <!--<button th:attr="delete_url=@{/application/sjxx/}+${sjxx.id}" onclick="del()" class="btn btn-small btn-danger">删除</button>-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div id="Querydetail" style="height: 40%;display: none">
+                <div id="left" style="width: 33%;float: left" align="center">
+                    <span>司机名称：</span><span id="driverName">1</span><br>
+                    <span>身份证号：</span><span id="IDCard">1</span><br>
+                    <span>电  话：</span><span id="phone">1</span><br>
+                    <span>手  机：</span><span id="mobile">1</span><br>
+                    <span>性  别：</span><span id="gender">1</span><br>
+                    <span>出生日期：</span><span id="birthday">1</span><br>
+                    <span>状  态：</span><span id="state">1</span><br>
+                    <span>车  号：</span><span id="carNO">1</span><br>
+                </div>
+
+                <div id="mid" style="width: 33%;float: left" align="center">
+                    <span>准载体积：</span><span id="allowCarryVolume">1</span><br>
+                    <span>准载重量：</span><span id="allowCarryWeight">1</span><br>
+                    <span>住  址：</span><span id="address">1</span><br>
+                    <span>车  型：</span><span id="carType">1</span><br>
+                    <span>车厢长度：</span><span id="carLength">1</span><br>
+                    <span>车属单位：</span><span id="carDept">1</span><br>
+                    <span>车属单位电话：</span><span id="carDeptTel">1</span><br>
+                    <span>驾驶证：</span><span id="driveLicence">1</span><br>
+                </div>
+
+                <div id="right" style="width: 33%;float: right" align="center">
+                    <span>行驶证：</span><span id="runLicence">1</span><br>
+                    <span>营运证：</span><span id="bizLicence">1</span><br>
+                    <span>保险证：</span><span id="insuranceCard">1</span><br>
+                    <span>车厢宽度：</span><span id="carWidth">1</span><br>
+                    <span>载物高度：</span><span id="goodsHeight">1</span><br>
+                    <span>车架号：</span><span id="carFrameNO">1</span><br>
+                    <span>发动机号：</span><span id="engineNO">1</span><br>
+                    <span>备注：</span><span id="remark">1</span><br>
+                    <span>公司车：</span><span id="companyCar">1</span><br>
+                </div>
+            </div>
+            <form id="deleteForm" action="/application/SjxxDelete" method="post">
+                <!--<input type="hidden" name="_method" value="delete"/>-->
+                <input type="hidden" name="id" id="deleteId"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    !function () {
+        laydate.skin('molv');
+        laydate({elem: '#Calendar'});
+    }();
+
+   /* function del() {
+        //alert($(this).attr("delete_uri"));
+        //删除当前司机信息
+        $("#deleteForm").attr("action",$(this).attr("delete_url")).submit();
+    }*/
+   function del(id) {
+       $("#deleteId").val(id);
+       $("#deleteForm").submit();
+   }
+</script>
+
+
+</body>
+</html>

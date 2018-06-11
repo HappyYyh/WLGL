@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>晶科物流管理系统</title>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" th:href="@{css/login_html.css}"/>
-    <script type="text/javascript" src="js/jquery1.9.0.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <title>物流管理系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/login_html.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
-<div class="tit"><img src="img/tit.png" alt=""/></div>
+<div class="tit"><img th:src="@{/img/tit.png}" alt=""/></div>
 <div class="login-wrap">
     <form action="/login" method="post" id="fomid">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>司机信息添加/修改</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                司机信息增加
+            </ul>
+        </div>
+        <div id="SjxxAddMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <!--需要区分是修改还是添加-->
+        <form action="/application/sjxx" method="post">
+            <!--发送put请求发送数据-->
+            <!--
+            1、SpringMvc中配置HiddenHttpMethodFilter(Springboot自动配置好的)
+            2、页面创建一个post表单
+            3、创建一个input项，name="_method"值就是我们指定的方式
+            -->
+            <input type="hidden" name="_method" value="put" th:if="${SJ!=null}"/>
+            <input type="hidden" name="id" th:if="${SJ!=null}" th:value="${SJ.id}"/>
+            <div id="left" style="width: 33%;float: left">
+                <span>司机名称：</span><input type="text" name="driverName" placeholder="请输入司机名称" th:value="${SJ!=null}?${SJ.driverName}"/><br>
+                <span>身份证号：</span><input type="text" name="IDCard" placeholder="请输入身份证号" th:value="${SJ!=null}?${SJ.IDCard}"/><br>
+                <span>电  话：</span><input type="text" name="phone" placeholder="请输入电话" th:value="${SJ!=null}?${SJ.phone}"/><br>
+                <span>手  机：</span><input type="text" name="mobile" placeholder="请输入手机" th:value="${SJ!=null}?${SJ.mobile}"/><br>
+                <span>性  别：</span><input type="text" name="gender" placeholder="请输入性别" th:value="${SJ!=null}?${SJ.gender}"/><br>
+                <span>出生日期：</span><input type="text" name="birthday" placeholder="请输入出生日期" th:value="${SJ!=null}?${SJ.birthday}"/><br>
+                <span>状  态：</span><input type="text" name="state" placeholder="请输入状态" th:value="${SJ!=null}?${SJ.state}"/><br>
+                <span>车  号：</span><input type="text" name="carNO" placeholder="请输入车号" th:value="${SJ!=null}?${SJ.carNO}"/><br>
+            </div>
+
+            <div id="mid" style="width: 33%;float: left">
+                <span>准载体积：</span><input type="text" name="allowCarryVolume" placeholder="请输入准载体积" th:value="${SJ!=null}?${SJ.allowCarryVolume}"/><br>
+                <span>准载重量：</span><input type="text" name="allowCarryWeight" placeholder="请输入准载重量" th:value="${SJ!=null}?${SJ.allowCarryWeight}"/><br>
+                <span>住  址：</span><input type="text" name="address" placeholder="请输入住址" th:value="${SJ!=null}?${SJ.address}"/><br>
+                <span>车  型：</span><input type="text" name="carType" placeholder="请输入车型" th:value="${SJ!=null}?${SJ.carType}"/><br>
+                <span>车厢长度：</span><input type="text" name="carLength" placeholder="请输入车厢长度" th:value="${SJ!=null}?${SJ.carLength}"/><br>
+                <span>车属单位：</span><input type="text" name="carDept" placeholder="请输入车属单位" th:value="${SJ!=null}?${SJ.carDept}"/><br>
+                <span>车属单位电话：</span><input type="text" name="carDeptTel" placeholder="请输入车属单位电话" th:value="${SJ!=null}?${SJ.carDeptTel}"/><br>
+                <span>驾驶证：</span><input type="text" name="driveLicence" placeholder="请输入驾驶证" th:value="${SJ!=null}?${SJ.driveLicence}"/><br>
+            </div>
+
+            <div id="right" style="width: 33%;float: right">
+                <span>行驶证：</span><input type="text" name="runLicence" placeholder="请输入行驶证" th:value="${SJ!=null}?${SJ.runLicence}"/><br>
+                <span>营运证：</span><input type="text" name="bizLicence" placeholder="请输入营运证" th:value="${SJ!=null}?${SJ.bizLicence}"/><br>
+                <span>保险证：</span><input type="text" name="insuranceCard" placeholder="请输入保险证" th:value="${SJ!=null}?${SJ.insuranceCard}"/><br>
+                <span>车厢宽度：</span><input type="text" name="carWidth" placeholder="请输入车厢宽度" th:value="${SJ!=null}?${SJ.carWidth}"/><br>
+                <span>载物高度：</span><input type="text" name="goodsHeight" placeholder="请输入载物高度" th:value="${SJ!=null}?${SJ.goodsHeight}"/><br>
+                <span>车架号：</span><input type="text" name="carFrameNO" placeholder="请输入车架号" th:value="${SJ!=null}?${SJ.carFrameNO}"/><br>
+                <span>发动机号：</span><input type="text" name="engineNO" placeholder="请输入发动机号" th:value="${SJ!=null}?${SJ.engineNO}"/><br>
+                <span>备注：</span><input type="text" name="remark" placeholder="请输入备注" th:value="${SJ!=null}?${SJ.remark}"/><br>
+                <span>公司车：</span><input type="text" name="companyCar" placeholder="请输入公司车" th:value="${SJ!=null}?${SJ.companyCar}"/><br>
+            </div>
+            <div align="center">
+            <input type="submit" class="btn btn-primary" th:value="${SJ!=null}?'修改':'添加'">
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    !function () {
+        laydate.skin('molv');
+        laydate({elem: '#Calendar'});
+    }();
+
+</script>
+
+
+</body>
+</html>
