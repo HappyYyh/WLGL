@@ -44,17 +44,40 @@
                 myMenu = new SDMenu("my_menu");
                 myMenu.init();
             };
+
+            $(".inactive").click(function () {
+                if($(this).sibling('ul').css('display')=='none'){
+                    $(this).siblings('ul').slideDown(100);
+                    $(this).parents("div").siblings("div").slideUp(100);
+                }else {
+                    //控制自身菜单下子菜单隐藏
+                    $(this).siblings('ul').slideUp(100);
+                }
+            })
+
+
         </script>
 
         <div id="my_menu" class="sdmenu">
-            <div>
+            <div class="collapsed">
                 <span>票据管理</span>
-                <a href="查询页面.html">票据分发</a>
+                <a class="inactive">票据分发</a>
+                <ul >
+                    <li><a style="cursor:pointer">票据分发</a></li>
+                    <li><a style="cursor:pointer">票据查询</a></li>
+                </ul>
+                <a class="inactive">票据销核</a>
+                <ul >
+                    <li><a style="cursor:pointer">已填票据</a></li>
+                    <li><a style="cursor:pointer">作废票据</a></li>
+                    <li><a style="cursor:pointer">结账票据</a></li>
+                </ul>
+                <!--<a href="查询页面.html">票据分发</a>
                 <a href="分理处发货排行榜.html">票据查询</a>
                 <a href="开票界面.html">票据销核</a>
                 <a href="客户投诉.html">已填票据</a>
                 <a href="线路管理.html">作废票据</a>
-                <a href="#">结账票据</a>
+                <a href="#">结账票据</a>-->
             </div>
             <div class="collapsed">
                 <span>接货管理</span>
@@ -127,12 +150,32 @@
 
             <div class="collapsed">
                 <span>应用管理</span>
+               <!-- <a href="#">客户管理</a>
+                <ul>
+                    <li><a href="/application/khxx">客户填写</a></li>
+                    <li><a href="/application/khxxs">客户查询</a></li>
+                </ul>
+                <a href="#">司机管理</a>
+                <ul>
+                    <li><a href="/application/sjxx">司机填写</a></li>
+                    <li><a href="/application/sjxxs">司机查询</a></li>
+                </ul>
+                <a href="#">线路管理</a>
+                <ul>
+                    <li><a href="#">城市信息</a></li>
+                    <li><a href="/application/xlxx">线路信息</a></li>
+                </ul>
+                <a href="#">职员管理</a>
+                <ul>
+                    <li><a href="/application/zyxx">职员填写</a></li>
+                    <li><a href="/application/zyxxs">职员查询</a></li>
+                </ul>-->
                 <a href="/application/khxx">客户填写</a>
                 <a href="/application/khxxs">客户查询</a>
                 <a href="/application/sjxx">司机信息填写</a>
                 <a href="/application/sjxxs">司机查询</a>
                 <a href="#">城市信息</a>
-                <a href="#">线路信息</a>
+                <a href="/application/xlxx">线路信息</a>
                 <a href="/application/zyxx">职员填写</a>
                 <a href="/application/zyxxs">职员查询</a>
 
@@ -148,7 +191,7 @@
             </div>
         </div>
     </div>
-    <div class="Switch"></div>
+    <!--<div class="Switch"></div>
     <script type="text/javascript">
         $(document).ready(function (e) {
             $(".Switch").click(function () {
@@ -156,7 +199,7 @@
 
             });
         });
-    </script>
+    </script>-->
 </div>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.njxzc.wlgl.controller.application;
 
-import com.njxzc.wlgl.pojo.application.Dqcs;
 import com.njxzc.wlgl.pojo.application.Xlxx;
 import com.njxzc.wlgl.service.application.XlxxService;
 import org.springframework.beans.factory.annotation.Autowired;
