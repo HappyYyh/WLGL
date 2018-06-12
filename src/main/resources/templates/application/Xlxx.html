@@ -100,7 +100,7 @@
             <!--增加-->
             <button id="addToggle" class="btn btn-small btn-danger">添加线路</button>
             <div id="AddXlxx" style="width: 80%;height: 20%;display: none">
-                <form action="/application/addXlxx" method="get">
+                <form action="/application/addXlxx" method="post">
                     <input type="hidden" name="id"/>
                     <span>起点：</span><input type="text" name="startStation" placeholder="请输入起点名称"/><br>
                     <span>终点：</span><input type="text" name="endStation" placeholder="请输入终点名称"/><br>
@@ -118,7 +118,7 @@
 
             <!--更新-->
             <div id="UpdateXlxx" style="width: 80%;height: 20%;display: none">
-                <form action="/application/updateXlxx" method="get">
+                <form action="/application/updateXlxx" method="post">
                     <input type="hidden" id="xlxx_id" name="id"/><br>
                     <span>起点：</span><input type="text" id="xlxx_startStation" name="startStation"/><br>
                     <span>终点：</span><input type="text" id="xlxx_endStation" name="endStation"/><br>

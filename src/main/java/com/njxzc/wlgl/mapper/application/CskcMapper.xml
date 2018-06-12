@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.application.CskcMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.application.Cskc" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="CityID" property="cityID" jdbcType="INTEGER" />
+    <result column="RangeCity" property="rangeCity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, CityID, RangeCity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_29_cskc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_29_cskc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.application.Cskc" >
+    insert into t_29_cskc (id, CityID, RangeCity
+      )
+    values (#{id,jdbcType=INTEGER}, #{cityID,jdbcType=INTEGER}, #{rangeCity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.application.Cskc" >
+    insert into t_29_cskc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityID != null" >
+        CityID,
+      </if>
+      <if test="rangeCity != null" >
+        RangeCity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityID != null" >
+        #{cityID,jdbcType=INTEGER},
+      </if>
+      <if test="rangeCity != null" >
+        #{rangeCity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.application.Cskc" >
+    update t_29_cskc
+    <set >
+      <if test="cityID != null" >
+        CityID = #{cityID,jdbcType=INTEGER},
+      </if>
+      <if test="rangeCity != null" >
+        RangeCity = #{rangeCity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.application.Cskc" >
+    update t_29_cskc
+    set CityID = #{cityID,jdbcType=INTEGER},
+      RangeCity = #{rangeCity,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
