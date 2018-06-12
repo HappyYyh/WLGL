@@ -62,11 +62,12 @@ public class SjxxController {
     }
 
     //删除
-    /*@DeleteMapping("/sjxx/{id}")
-    public String delete(@PathVariable("id") Integer id){
+   /* @DeleteMapping("sjxx/{id}")
+    public String delete1(@PathVariable("id") Integer id){
         sjxxService.delete(id);
         return "redirect:/application/sjxxs";
     }*/
+
     @RequestMapping("SjxxDelete")
     public String delete(Integer id){
         sjxxService.delete(id);

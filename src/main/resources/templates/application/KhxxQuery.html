@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+    <title>客户查询</title>
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                客户信息查询
+            </ul>
+        </div>
+        <div id="KhxxQueryMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <div style="height: 60%">
+                <table align="center" border="1" width="80%" height="50%" >
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>会员编号</th>
+                        <th>会员姓名</th>
+                        <th>手机号码</th>
+                        <th>传   真</th>
+                        <th> 地址</th>
+                        <th>邮政编码</th>
+                        <th>联系人</th>
+                        <th>联系人手机</th>
+                        <th>会员类型</th>
+                        <th>企业类型</th>
+                        <th>企业大小</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="khxx:${list}" >
+                        <td th:text="${khxx.id}" align="center">${zyxx.id}</td>
+                        <td th:text="${khxx.customerCode}" align="center"></td>
+                        <td th:text="${khxx.customerName}" align="center"></td>
+                        <td th:text="${khxx.phone}" align="center"></td>
+                        <td th:text="${khxx.fax}" align="center"></td>
+                        <td th:text="${khxx.address}" align="center"></td>
+                        <td th:text="${khxx.postCode}" align="center"></td>
+                        <td th:text="${khxx.linkman}" align="center"></td>
+                        <td th:text="${khxx.linkmanMobile}" align="center"></td>
+                        <td th:text="${khxx.customerType}" align="center"></td>
+                        <td th:text="${khxx.enterpriseProperty}" align="center"></td>
+                        <td th:text="${khxx.enterpriseSize}" align="center"></td>
+                        <td align="center">
+                            <a class="btn btn-small btn-primary" th:href="@{/application/khxx/}+${khxx.id}">编辑</a><br/>
+                            <form action="/application/KhxxDelete" method="post">
+                                <input type="hidden" name="id" th:if="${khxx.id!=null}" th:value="${khxx.id}"/>
+                                <input type="submit" class="btn btn-small btn-primary"   th:value="删除"/>
+                            </form>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

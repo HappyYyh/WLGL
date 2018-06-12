@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.application.KhxxMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.application.Khxx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="CustomerCode" property="customerCode" jdbcType="INTEGER" />
+    <result column="CustomerName" property="customerName" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Fax" property="fax" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="PostCode" property="postCode" jdbcType="VARCHAR" />
+    <result column="Linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="LinkmanMobile" property="linkmanMobile" jdbcType="VARCHAR" />
+    <result column="CustomerType" property="customerType" jdbcType="VARCHAR" />
+    <result column="EnterpriseProperty" property="enterpriseProperty" jdbcType="VARCHAR" />
+    <result column="EnterpriseSize" property="enterpriseSize" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, CustomerCode, CustomerName, Phone, Fax, Address, PostCode, Linkman, LinkmanMobile, 
+    CustomerType, EnterpriseProperty, EnterpriseSize, Email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_25_khjbxx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_25_khjbxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.application.Khxx" >
+    insert into t_25_khjbxx (id, CustomerCode, CustomerName, 
+      Phone, Fax, Address, 
+      PostCode, Linkman, LinkmanMobile, 
+      CustomerType, EnterpriseProperty, EnterpriseSize, 
+      Email)
+    values (#{id,jdbcType=INTEGER}, #{customerCode,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{linkmanMobile,jdbcType=VARCHAR}, 
+      #{customerType,jdbcType=VARCHAR}, #{enterpriseProperty,jdbcType=VARCHAR}, #{enterpriseSize,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.application.Khxx" >
+    insert into t_25_khjbxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerCode != null" >
+        CustomerCode,
+      </if>
+      <if test="customerName != null" >
+        CustomerName,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="fax != null" >
+        Fax,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="postCode != null" >
+        PostCode,
+      </if>
+      <if test="linkman != null" >
+        Linkman,
+      </if>
+      <if test="linkmanMobile != null" >
+        LinkmanMobile,
+      </if>
+      <if test="customerType != null" >
+        CustomerType,
+      </if>
+      <if test="enterpriseProperty != null" >
+        EnterpriseProperty,
+      </if>
+      <if test="enterpriseSize != null" >
+        EnterpriseSize,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerCode != null" >
+        #{customerCode,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanMobile != null" >
+        #{linkmanMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseProperty != null" >
+        #{enterpriseProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseSize != null" >
+        #{enterpriseSize,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.application.Khxx" >
+    update t_25_khjbxx
+    <set >
+      <if test="customerCode != null" >
+        CustomerCode = #{customerCode,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+        CustomerName = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        Fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        PostCode = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        Linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanMobile != null" >
+        LinkmanMobile = #{linkmanMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        CustomerType = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseProperty != null" >
+        EnterpriseProperty = #{enterpriseProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseSize != null" >
+        EnterpriseSize = #{enterpriseSize,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.application.Khxx" >
+    update t_25_khjbxx
+    set CustomerCode = #{customerCode,jdbcType=INTEGER},
+      CustomerName = #{customerName,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Fax = #{fax,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      PostCode = #{postCode,jdbcType=VARCHAR},
+      Linkman = #{linkman,jdbcType=VARCHAR},
+      LinkmanMobile = #{linkmanMobile,jdbcType=VARCHAR},
+      CustomerType = #{customerType,jdbcType=VARCHAR},
+      EnterpriseProperty = #{enterpriseProperty,jdbcType=VARCHAR},
+      EnterpriseSize = #{enterpriseSize,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryById" resultType="com.njxzc.wlgl.pojo.application.Khxx" >
+    select
+    <include refid="Base_Column_List"/>
+    from t_25_khjbxx where  id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="queryAll"  resultType="com.njxzc.wlgl.pojo.application.Khxx">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_25_khjbxx
+   </select>
+</mapper>
