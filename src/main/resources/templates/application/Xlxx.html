@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>线路信息管理</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+
+    <script>
+        //全局变量itemsList用于存储后台传来的list
+        var xlxxList;
+        $(document).ready(function () {
+            $.ajax({
+                type: 'post',
+                url: '/application/xlxxs',
+                data: '',
+                contentType: 'application/json',
+                success: function (result) {
+                    //将result存到全局变量itemsList中
+                    xlxxList = result;
+                    var trc = $("#Xlxx_table");
+                    trc.nextAll().remove();
+                    var meg = "";
+                    $.each(result, function (index, xlxx) {
+                        meg = "<td>" + xlxx.id + "</td><td>" + xlxx.startStation + "</td><td>" + xlxx.endStation + "</td><td>" + xlxx.distance
+                            + "</td><td>" + xlxx.fetchTime + "</td><td><button class='btn btn-small btn-danger' onclick='del(" + xlxx.id + ")'>删除</button>" +
+                            "<button class='btn btn-small btn-danger' onclick='showInUpdateForm(" + xlxx.id + ")'>更新</button></td>";
+                        trc.append("<tr>" + meg + "</tr>");
+                    });
+                    //alert(JSON.stringify(result));
+                }
+            });
+        })
+
+        function del(id) {
+            $("#deleteId").val(id);
+            $("#deleteForm").submit();
+        }
+
+        function showInUpdateForm(id) {
+            $("#UpdateXlxx").hide(125);
+            $("#UpdateXlxx").show(250);
+            $.each(xlxxList, function (index, xlxx) {
+                if (id == xlxx.id) {
+                    $("#xlxx_id").val(xlxx.id);
+                    $("#xlxx_startStation").val(xlxx.startStation);
+                    $("#xlxx_endStation").val(xlxx.endStation);
+                    $("#xlxx_distance").val(xlxx.distance);
+                    $("#xlxx_fetchTime").val(xlxx.fetchTime);
+                }
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                线路信息管理
+            </ul>
+        </div>
+        <div id="XlxxQueryMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <div style="height: 60%">
+                <table id="Xlxx_table" class="table table-striped table-hover table-bordered table-condensed"
+                       align="center" border="1" width="80%" height="50%">
+                    <thead>
+                    <tr>
+                        <th>线路编号</th>
+                        <th>起点</th>
+                        <th>终点</th>
+                        <th>里程</th>
+                        <th>抵达时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="Xlxx_tbody">
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="Querydetail" style="height: 1%;display: none">
+            </div>
+
+            <!--增加-->
+            <button id="addToggle" class="btn btn-small btn-danger">添加线路</button>
+            <div id="AddXlxx" style="width: 80%;height: 20%;display: none">
+                <form action="/application/addXlxx" method="get">
+                    <input type="hidden" name="id"/>
+                    <span>起点：</span><input type="text" name="startStation" placeholder="请输入起点名称"/><br>
+                    <span>终点：</span><input type="text" name="endStation" placeholder="请输入终点名称"/><br>
+                    <span>里程：</span><input type="text" name="distance" placeholder="请输入里程"/><br>
+                    <span>抵达时间：</span><input type="text" name="fetchTime" placeholder="请输入抵达时间"/><br>
+                    <input type="submit" value="添加"/>
+                </form>
+            </div>
+
+            <!--删除的form-->
+            <form id="deleteForm" action="/application/XlxxDelete" method="get">
+                <!--<input  name="_method" value="delete"/>-->
+                <input type="hidden" name="id" id="deleteId"/>
+            </form>
+
+            <!--更新-->
+            <div id="UpdateXlxx" style="width: 80%;height: 20%;display: none">
+                <form action="/application/updateXlxx" method="get">
+                    <input type="hidden" id="xlxx_id" name="id"/><br>
+                    <span>起点：</span><input type="text" id="xlxx_startStation" name="startStation"/><br>
+                    <span>终点：</span><input type="text" id="xlxx_endStation" name="endStation"/><br>
+                    <span>里程：</span><input type="text" id="xlxx_distance" name="distance"/><br>
+                    <span>抵达时间：</span><input type="text" id="xlxx_fetchTime" name="fetchTime"/><br>
+                    <input type="submit" value="更新"/>
+                </form>
+            </div>
+
+        </div>
+        <script>
+            $("#addToggle").click(function () {
+                $("#AddXlxx").toggle(200);
+            })
+        </script>
+</body>
+</html>
