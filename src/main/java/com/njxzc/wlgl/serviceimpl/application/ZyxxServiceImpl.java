@@ -1,4 +1,4 @@
-package com.njxzc.wlgl.service.impl.application;
+package com.njxzc.wlgl.serviceimpl.application;
 
 
 import com.njxzc.wlgl.mapper.application.ZyxxMapper;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ZyxxServiceImpl implements ZyxxService {
 
 @Autowired
-    ZyxxMapper zyxxMapper;
+ZyxxMapper zyxxMapper;
 
     @Override
     public int insert(Zyxx zyxx) {

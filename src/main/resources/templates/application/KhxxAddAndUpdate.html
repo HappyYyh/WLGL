@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>客户信息添加/修改</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+
+</head>
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                客户信息增加
+            </ul>
+        </div>
+        <div id="KhxxAddMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <!--需要区分是修改还是添加-->
+            <form action="/application/khxx" method="post">
+                <!--发送put请求发送数据-->
+                <!--
+                1、SpringMvc中配置HiddenHttpMethodFilter(Springboot自动配置好的)
+                2、页面创建一个post表单
+                3、创建一个input项，name="_method"值就是我们指定的方式
+                -->
+                <input type="hidden" name="_method" value="put" th:if="${KH!=null}"/>
+                <input type="hidden" name="id" th:if="${KH!=null}" th:value="${KH.id}"/>
+                <div id="left" style="width: 33%;float: left">
+                    <span>会员编号：</span><input type="text" name="customerCode" placeholder="请输入会员编号" th:value="${KH!=null}?${KH.customerCode}"/><br>
+                    <span>会员姓名：</span><input type="text" name="customerName" placeholder="请输入会员姓名" th:value="${KH!=null}?${KH.customerName}"/><br>
+                    <span>手机号码：</span><input type="text" name="phone" placeholder="请输入号码" th:value="${KH!=null}?${KH.phone}"/><br>
+                    <span>传   真：</span><input type="text" name="fax" placeholder="请输入传真" th:value="${KH!=null}?${KH.fax}"/><br>
+                    <span>地   址：</span><input type="text" name="address" placeholder="请输入地址" th:value="${KH!=null}?${KH.address}"/><br>
+                    <span>邮政编码：</span><input type="text" name="postCode" placeholder="请输入邮政编码" th:value="${KH!=null}?${KH.postCode}"/><br>
+                    <span>联系人：</span><input type="text" name="linkman" placeholder="请输入联系人" th:value="${KH!=null}?${KH.linkman}"/><br>
+                    <span>联系人手机：</span><input type="text" name="linkmanMobile" placeholder="请输入联系人手机" th:value="${KH!=null}?${KH.linkmanMobile}"/><br>
+                    <span>会员类型：</span><input type="text" name="customerType" placeholder="请输入会员类型" th:value="${KH!=null}?${KH.customerType}"/><br>
+                    <span>企业类型：</span><input type="text" name="enterpriseProperty" placeholder="请输入企业类型" th:value="${KH!=null}?${KH.enterpriseProperty}"/><br>
+                    <span>企业规模：</span><input type="text" name="enterpriseSize" placeholder="请输入企业规模" th:value="${KH!=null}?${KH.enterpriseSize}"/><br>
+                    <span>电子邮箱：</span><input type="text" name="email" placeholder="请输入邮箱" th:value="${KH!=null}?${KH.email}"/><br>
+                    <input type="submit" class="btn btn-primary" th:value="${KH!=null}?'修改':'添加'">
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

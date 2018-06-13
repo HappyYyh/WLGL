@@ -9,5 +9,8 @@
         <module name="wlgl" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wlgl" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

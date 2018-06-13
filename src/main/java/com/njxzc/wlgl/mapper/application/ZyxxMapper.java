@@ -1,5 +1,4 @@
 package com.njxzc.wlgl.mapper.application;
-import com.njxzc.wlgl.pojo.application.Sjxx;
 import com.njxzc.wlgl.pojo.application.Zyxx;
 
 import java.util.List;

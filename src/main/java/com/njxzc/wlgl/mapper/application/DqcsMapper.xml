@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.application.DqcsMapper">
+    <sql id="Base_Column_List">
+    id, City
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_28_dqcs
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_28_dqcs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <!--useGeneratedKeys="true"  keyProperty="对应的主键的对象"。这样就可以得到自动增长的主键值-->
+    <insert id="insertAndGetId" useGeneratedKeys="true" keyProperty="id" parameterType="com.njxzc.wlgl.pojo.application.Dqcs">
+    insert into t_28_dqcs (id, City)
+    values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR})
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.application.Dqcs">
+        insert into t_28_dqcs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="city != null">
+                City,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.application.Dqcs">
+        update t_28_dqcs
+        <set>
+            <if test="city != null">
+                City = #{city,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.application.Dqcs">
+    update t_28_dqcs
+    set City = #{city,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="queryAll" resultType="com.njxzc.wlgl.pojo.application.Dqcs">
+        select
+        <include refid="Base_Column_List"/>
+        from t_28_dqcs
+    </select>
+
+    <!--Dqcs ResultMap-->
+    <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.application.Dqcs">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="City" property="city" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--Dqcs+Cskc ResultMap , 继承BaseResultMap-->
+    <resultMap id="DqcsCskcResultMap" type="com.njxzc.wlgl.pojo.application.Dqcs" extends="BaseResultMap">
+        <collection property="cskcList" ofType="com.njxzc.wlgl.pojo.application.Cskc">
+            <!--添上主键id cskcList里就只有一条数据了，是因为表1，表2有相同字段id， -->
+            <!--解决方法：表2的id起个别名(csid)。 https://my.oschina.net/u/1020238/blog/517115?fromerr=qPbx9Vfc-->
+            <id property="id" column="csid" javaType="java.lang.Integer"/>
+            <result property="cityID" column="CityID" javaType="java.lang.Integer"/>
+            <result property="rangeCity" column="RangeCity" javaType="java.lang.String"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryAllAndCskc" resultMap="DqcsCskcResultMap">
+        SELECT d.*,c.id csid,c.CityID,c.RangeCity FROM t_28_dqcs d,t_29_cskc c WHERE d.id=c.CityID
+    </select>
+
+
+</mapper>
