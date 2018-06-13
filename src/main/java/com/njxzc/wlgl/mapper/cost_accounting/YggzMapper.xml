@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.cost_accounting.YggzMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="EmployeeCode" property="employeeCode" jdbcType="VARCHAR" />
+    <result column="BasicWage" property="basicWage" jdbcType="DOUBLE" />
+    <result column="StationWage" property="stationWage" jdbcType="DOUBLE" />
+    <result column="Allowance" property="allowance" jdbcType="DOUBLE" />
+    <result column="Date" property="date" jdbcType="TIMESTAMP" />
+    <result column="Employee" property="employee" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, EmployeeCode, BasicWage, StationWage, Allowance, Date, Employee
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_21_yggz
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_21_yggz
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
+    insert into t_21_yggz (id, EmployeeCode, BasicWage, 
+      StationWage, Allowance, Date, 
+      Employee)
+    values (#{id,jdbcType=INTEGER}, #{employeeCode,jdbcType=VARCHAR}, #{basicWage,jdbcType=DOUBLE}, 
+      #{stationWage,jdbcType=DOUBLE}, #{allowance,jdbcType=DOUBLE}, #{date,jdbcType=TIMESTAMP}, 
+      #{employee,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
+    insert into t_21_yggz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="employeeCode != null" >
+        EmployeeCode,
+      </if>
+      <if test="basicWage != null" >
+        BasicWage,
+      </if>
+      <if test="stationWage != null" >
+        StationWage,
+      </if>
+      <if test="allowance != null" >
+        Allowance,
+      </if>
+      <if test="date != null" >
+        Date,
+      </if>
+      <if test="employee != null" >
+        Employee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeCode != null" >
+        #{employeeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null" >
+        #{basicWage,jdbcType=DOUBLE},
+      </if>
+      <if test="stationWage != null" >
+        #{stationWage,jdbcType=DOUBLE},
+      </if>
+      <if test="allowance != null" >
+        #{allowance,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employee != null" >
+        #{employee,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
+    update t_21_yggz
+    <set >
+      <if test="employeeCode != null" >
+        EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null" >
+        BasicWage = #{basicWage,jdbcType=DOUBLE},
+      </if>
+      <if test="stationWage != null" >
+        StationWage = #{stationWage,jdbcType=DOUBLE},
+      </if>
+      <if test="allowance != null" >
+        Allowance = #{allowance,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null" >
+        Date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employee != null" >
+        Employee = #{employee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
+    update t_21_yggz
+    set EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+      BasicWage = #{basicWage,jdbcType=DOUBLE},
+      StationWage = #{stationWage,jdbcType=DOUBLE},
+      Allowance = #{allowance,jdbcType=DOUBLE},
+      Date = #{date,jdbcType=TIMESTAMP},
+      Employee = #{employee,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

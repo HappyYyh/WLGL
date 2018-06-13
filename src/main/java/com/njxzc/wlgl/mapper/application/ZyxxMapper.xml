@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.application.ZyxxMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.application.Zyxx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="EmployeeCode" property="employeeCode" jdbcType="VARCHAR" />
+    <result column="Employee" property="employee" jdbcType="VARCHAR" />
+    <result column="Department" property="department" jdbcType="VARCHAR" />
+    <result column="Position" property="position" jdbcType="VARCHAR" />
+    <result column="Gender" property="gender" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, EmployeeCode, Employee, Department, Position, Gender, Birthday
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_26_zyxx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_26_zyxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.application.Zyxx" >
+    insert into t_26_zyxx (EmployeeCode, Employee,
+      Department, Position, Gender, 
+      Birthday)
+    values (#{employeeCode,jdbcType=VARCHAR}, #{employee,jdbcType=VARCHAR},
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.application.Zyxx" >
+    insert into t_26_zyxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="employeeCode != null" >
+        EmployeeCode,
+      </if>
+      <if test="employee != null" >
+        Employee,
+      </if>
+      <if test="department != null" >
+        Department,
+      </if>
+      <if test="position != null" >
+        Position,
+      </if>
+      <if test="gender != null" >
+        Gender,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeCode != null" >
+        #{employeeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        #{employee,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.application.Zyxx" >
+    update t_26_zyxx
+    <set >
+      <if test="employeeCode != null" >
+        EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        Employee = #{employee,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        Gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.application.Zyxx" >
+    update t_26_zyxx
+    set EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+      Employee = #{employee,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=VARCHAR},
+      Gender = #{gender,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAll" resultType="com.njxzc.wlgl.pojo.application.Zyxx">
+    select
+    <include refid="Base_Column_List"/>
+    from t_26_zyxx
+  </select>
+
+  <select id="queryById" resultType="com.njxzc.wlgl.pojo.application.Zyxx">
+    select
+    <include refid="Base_Column_List"/>
+    from t_26_zyxx where  id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

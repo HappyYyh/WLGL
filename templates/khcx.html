@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>客户查询</title>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/css.css"/>
+    <script type="text/javascript" src="/js/jquery1.9.0.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/sdmenu.js"></script>
+    <script type="text/javascript" src="/js/laydate/laydate.js"></script>
+
+    <script>
+        var datatemp;
+
+        function toQuery() {
+            $.ajax({
+                type:'post',
+                url:'/customer/queryCustomer',
+                contentType: 'application/json;charset=utf-8',
+                data:'{"Customer":"'+$("#Customer").val()+'","CustomerType":"'+$("#CustomerType").val() +'"}',
+                success:function (data) {
+                    datatemp = data;
+                    var trc = $("#table_list");
+                    var meg = "";
+                    $.each(data,function (index, customer) {
+                        meg ="<td>"+customer.CustomerCode+"</td>"+
+                            "<td>"+customer.CustomerName+"</td>"+
+                            "<td>"+customer.Phone+"</td>"+
+                            "<td>"+customer.Fax+"</td>";
+                        trc.append("<tr>"+ meg +"</tr>");
+                    })
+                },
+            });
+        }
+    </script>
+</head>
+<body onload="toQuery()">
+<!--抽取公共头部
+<div th:replace="~{index :: header}"></div>
+&lt;!&ndash;顶部&ndash;&gt;
+<div id="middle">
+    <div th:replace="~{index :: left}"></div>-->
+
+    <br/>
+    <span class="span_text">客户资料查询</span>
+    <form name="form_serach" method="post">
+        <span class="btn-info">姓名:</span>
+        <input class="form-search" name="CustomerName" id="CustomerName" type="text"/>
+        <span class="btn-info">客户类型</span>
+        <input class="form-search" name="CustomerType" id="CustomerType" type="text"/>
+        <input class="btn-danger" type="button" value="查询" onclick="toQuery()">
+    </form>
+    <hr />
+
+    <div id="div_center">
+        <span class="btn-info">查询结果:</span>
+        <table id="table_list" class="table table-striped table-bordered table-hover  table-condensed" width="450px" >
+            <tr>
+            <td>客户编号</td>
+            <td>客户名称</td>
+            <td>电话</td>
+            <td>传真</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
