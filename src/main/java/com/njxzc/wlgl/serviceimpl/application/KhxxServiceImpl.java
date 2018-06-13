@@ -1,4 +1,4 @@
-package com.njxzc.wlgl.service.impl.application;
+package com.njxzc.wlgl.serviceimpl.application;
 
 
 import com.njxzc.wlgl.mapper.application.KhxxMapper;
@@ -7,7 +7,6 @@ import com.njxzc.wlgl.service.application.KhxxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

@@ -1,4 +1,4 @@
-package com.njxzc.wlgl.service.impl.application;
+package com.njxzc.wlgl.serviceimpl.application;
 
 import com.njxzc.wlgl.mapper.application.SjxxMapper;
 import com.njxzc.wlgl.pojo.application.Sjxx;

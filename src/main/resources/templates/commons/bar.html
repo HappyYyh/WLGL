@@ -36,7 +36,7 @@
 </div>
 <!--left-->
 <div th:fragment="left">
-    <!--<div class="left">
+    <div class="left">
 
         <script type="text/javascript">
             var myMenu;
@@ -44,18 +44,6 @@
                 myMenu = new SDMenu("my_menu");
                 myMenu.init();
             };
-
-            $(".inactive").click(function () {
-                if($(this).sibling('ul').css('display')=='none'){
-                    $(this).siblings('ul').slideDown(100);
-                    $(this).parents("div").siblings("div").slideUp(100);
-                }else {
-                    //控制自身菜单下子菜单隐藏
-                    $(this).siblings('ul').slideUp(100);
-                }
-            })
-
-
         </script>
 
         <div id="my_menu" class="sdmenu">
@@ -72,12 +60,12 @@
                     <li><a style="cursor:pointer">作废票据</a></li>
                     <li><a style="cursor:pointer">结账票据</a></li>
                 </ul>
-                &lt;!&ndash;<a href="查询页面.html">票据分发</a>
+                <!--<a href="查询页面.html">票据分发</a>
                 <a href="分理处发货排行榜.html">票据查询</a>
                 <a href="开票界面.html">票据销核</a>
                 <a href="客户投诉.html">已填票据</a>
                 <a href="线路管理.html">作废票据</a>
-                <a href="#">结账票据</a>&ndash;&gt;
+                <a href="#">结账票据</a>-->
             </div>
             <div class="collapsed">
                 <span>接货管理</span>
@@ -145,31 +133,9 @@
                 <a href="#">管理费用</a>
                 <a href="#">赔款信息</a>
                 <a href="#">损益报表</a>
-
             </div>
-
             <div class="collapsed">
                 <span>应用管理</span>
-               &lt;!&ndash; <a href="#">客户管理</a>
-                <ul>
-                    <li><a href="/application/khxx">客户填写</a></li>
-                    <li><a href="/application/khxxs">客户查询</a></li>
-                </ul>
-                <a href="#">司机管理</a>
-                <ul>
-                    <li><a href="/application/sjxx">司机填写</a></li>
-                    <li><a href="/application/sjxxs">司机查询</a></li>
-                </ul>
-                <a href="#">线路管理</a>
-                <ul>
-                    <li><a href="#">城市信息</a></li>
-                    <li><a href="/application/xlxx">线路信息</a></li>
-                </ul>
-                <a href="#">职员管理</a>
-                <ul>
-                    <li><a href="/application/zyxx">职员填写</a></li>
-                    <li><a href="/application/zyxxs">职员查询</a></li>
-                </ul>&ndash;&gt;
                 <a href="/application/khxx">客户填写</a>
                 <a href="/application/khxxs">客户查询</a>
                 <a href="/application/sjxx">司机填写</a>
@@ -178,8 +144,6 @@
                 <a href="/application/xlxx">线路信息</a>
                 <a href="/application/zyxx">职员填写</a>
                 <a href="/application/zyxxs">职员查询</a>
-
-
             </div>
             <div class="collapsed">
                 <span>系统管理</span>
@@ -190,7 +154,7 @@
                 <a href="#">数据维护</a>
             </div>
         </div>
-    </div>-->
+    </div>
     <!--<div class="Switch"></div>
     <script type="text/javascript">
         $(document).ready(function (e) {
@@ -200,306 +164,6 @@
             });
         });
     </script>-->
-    <div class="left">
-    <div class="list">
-        <ul class="yiji">
-            <li>
-                <a style="cursor:pointer" class="inactive">票据管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">票据分发</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">票据分发</a></li>
-                            <li><a style="cursor:pointer">票据查询</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">票据销核</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">已填票据</a></li>
-                            <li><a style="cursor:pointer">作废票据</a></li>
-                            <li><a style="cursor:pointer">结账票据</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">接货管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">填写接货单</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">填写运单</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">查询接货单</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">待发运单</a></li>
-                            <li><a style="cursor:pointer">未到运单</a></li>
-                            <li><a style="cursor:pointer">未结运单</a></li>
-                            <li><a style="cursor:pointer">所有运单</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">配车管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">填写运输合同</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">填写运输合同</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">查询运输合同</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">未出合同</a></li>
-                            <li><a style="cursor:pointer">未到车辆</a></li>
-                            <li><a style="cursor:pointer">未结车辆</a></li>
-                            <li><a style="cursor:pointer">所有合同</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">到货管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">到货回执</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">司机回执信息</a></li>
-                            <li><a style="cursor:pointer">客户回执信息</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">到货验收</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">差错信息</a></li>
-                            <li><a style="cursor:pointer">新到货物</a></li>
-                            <li><a style="cursor:pointer">到货历史</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">中转管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">中转公司</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">公司填写</a></li>
-                            <li><a style="cursor:pointer">公司查询</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">中转信息</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">中转填写</a></li>
-                            <li><a style="cursor:pointer">中转查询</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">结算管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">货运单结算</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">新结运单</a></li>
-                            <li><a style="cursor:pointer">结算历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">运输合同结算</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">新结运费</a></li>
-                            <li><a style="cursor:pointer">结算历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">代收款结算</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">代收结算</a></li>
-                            <li><a style="cursor:pointer">代收历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">其他结算</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">新单填写</a></li>
-                            <li><a style="cursor:pointer">结算历史</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">客户服务</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">投诉管理</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">投诉登记</a></li>
-                            <li><a style="cursor:pointer">投诉历史</a></li>
-                            <li><a style="cursor:pointer">投诉处理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">提货回告</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">新单回告</a></li>
-                            <li><a style="cursor:pointer">回告历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">到货回告</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">新单回告</a></li>
-                            <li><a style="cursor:pointer">回告历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">中转回告</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">发货客户回告</a></li>
-                            <li><a style="cursor:pointer">发货客户回告历史</a></li>
-                            <li><a style="cursor:pointer">收货客户回告</a></li>
-                            <li><a style="cursor:pointer">收货客户回告历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">已提回告</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">已提回告</a></li>
-                            <li><a style="cursor:pointer">回告历史</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">代收回告</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">新单回告</a></li>
-                            <li><a style="cursor:pointer">回告历史</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">监控分析</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">运单监控</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">运单时间监控</a></li>
-                            <li><a style="cursor:pointer">运单质量监控</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">统计报表</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">客户运量排行</a></li>
-                            <li><a style="cursor:pointer">司机运量排行</a></li>
-                            <li><a style="cursor:pointer">业务统计日报表</a></li>
-                            <li><a style="cursor:pointer">统计报表</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">成本核算</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">收入录入</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">营业外收入</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">支出录入</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">员工工资</a></li>
-                            <li><a style="cursor:pointer">财务费用</a></li>
-                            <li><a style="cursor:pointer">管理费用</a></li>
-                            <li><a style="cursor:pointer">赔款信息</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">成本报表</a>
-                        <ul style="display: none">
-                            <li>
-                                <a style="cursor:pointer">损益报表</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">应用管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">客户管理</a>
-                        <ul style="display: none">
-                            <li><a href="customer_addInput" target="con">客户填写</a></li>
-                            <li><a href="customer_list" target="con">客户查询</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">司机管理</a>
-                        <ul style="display: none">
-                            <li><a href="driver_addInput" target="con">司机填写</a></li>
-                            <li><a href="driver_list" target="con">司机查询</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">线路管理</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">城市信息</a></li>
-                            <li><a style="cursor:pointer">线路信息</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">职员管理</a>
-                        <ul style="display: none">
-                            <li><a href="employee_addInput" target="con">职员填写</a></li>
-                            <li><a href="employee_list" target="con">职员查询</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a style="cursor:pointer" class="inactive">系统管理</a>
-                <ul style="display: none">
-                    <li>
-                        <a style="cursor:pointer" class="inactive active">系统设置</a>
-                        <ul style="display: none">
-                            <li><a style="cursor:pointer">功能填写</a></li>
-                            <li><a style="cursor:pointer">用户组设置</a></li>
-                            <li><a style="cursor:pointer">用户设置</a></li>
-                            <li><a style="cursor:pointer">修改密码</a></li>
-                            <li><a style="cursor:pointer">数据维护</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <script src="jquery-3.2.1.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.inactive').click(function() {
-                if($(this).siblings('ul').css('display') == 'none') {
-                    $(this).siblings('ul').slideDown(100);
-                    $(this).parents("li").siblings("li").find("ul").slideUp(100);
-                } else {
-                    //控制自身菜单下子菜单隐藏
-                    $(this).siblings('ul').slideUp(100);
-                }
-            })
-        });
-    </script>
-    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.Transfer.ZzxxMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.Transfer.Zzxx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="GoodsBillCode" property="goodsBillCode" jdbcType="VARCHAR" />
+    <result column="TransferStation" property="transferStation" jdbcType="VARCHAR" />
+    <result column="TransferCheck" property="transferCheck" jdbcType="VARCHAR" />
+    <result column="CheckTime" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="Description" property="description" jdbcType="VARCHAR" />
+    <result column="TransferCompany" property="transferCompany" jdbcType="VARCHAR" />
+    <result column="TransferAddr" property="transferAddr" jdbcType="VARCHAR" />
+    <result column="TransferStationTel" property="transferStationTel" jdbcType="VARCHAR" />
+    <result column="TransferFee" property="transferFee" jdbcType="VARCHAR" />
+    <result column="AfterTransferBill" property="afterTransferBill" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, GoodsBillCode, TransferStation, TransferCheck, CheckTime, Description, TransferCompany, 
+    TransferAddr, TransferStationTel, TransferFee, AfterTransferBill
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_10_zzxx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_10_zzxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzxx" >
+    insert into t_10_zzxx (id, GoodsBillCode, TransferStation, 
+      TransferCheck, CheckTime, Description, 
+      TransferCompany, TransferAddr, TransferStationTel, 
+      TransferFee, AfterTransferBill)
+    values (#{id,jdbcType=INTEGER}, #{goodsBillCode,jdbcType=VARCHAR}, #{transferStation,jdbcType=VARCHAR}, 
+      #{transferCheck,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{transferCompany,jdbcType=VARCHAR}, #{transferAddr,jdbcType=VARCHAR}, #{transferStationTel,jdbcType=VARCHAR}, 
+      #{transferFee,jdbcType=VARCHAR}, #{afterTransferBill,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzxx" >
+    insert into t_10_zzxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsBillCode != null" >
+        GoodsBillCode,
+      </if>
+      <if test="transferStation != null" >
+        TransferStation,
+      </if>
+      <if test="transferCheck != null" >
+        TransferCheck,
+      </if>
+      <if test="checkTime != null" >
+        CheckTime,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+      <if test="transferCompany != null" >
+        TransferCompany,
+      </if>
+      <if test="transferAddr != null" >
+        TransferAddr,
+      </if>
+      <if test="transferStationTel != null" >
+        TransferStationTel,
+      </if>
+      <if test="transferFee != null" >
+        TransferFee,
+      </if>
+      <if test="afterTransferBill != null" >
+        AfterTransferBill,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBillCode != null" >
+        #{goodsBillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStation != null" >
+        #{transferStation,jdbcType=VARCHAR},
+      </if>
+      <if test="transferCheck != null" >
+        #{transferCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="transferCompany != null" >
+        #{transferCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="transferAddr != null" >
+        #{transferAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStationTel != null" >
+        #{transferStationTel,jdbcType=VARCHAR},
+      </if>
+      <if test="transferFee != null" >
+        #{transferFee,jdbcType=VARCHAR},
+      </if>
+      <if test="afterTransferBill != null" >
+        #{afterTransferBill,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzxx" >
+    update t_10_zzxx
+    <set >
+      <if test="goodsBillCode != null" >
+        GoodsBillCode = #{goodsBillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStation != null" >
+        TransferStation = #{transferStation,jdbcType=VARCHAR},
+      </if>
+      <if test="transferCheck != null" >
+        TransferCheck = #{transferCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        CheckTime = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="transferCompany != null" >
+        TransferCompany = #{transferCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="transferAddr != null" >
+        TransferAddr = #{transferAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStationTel != null" >
+        TransferStationTel = #{transferStationTel,jdbcType=VARCHAR},
+      </if>
+      <if test="transferFee != null" >
+        TransferFee = #{transferFee,jdbcType=VARCHAR},
+      </if>
+      <if test="afterTransferBill != null" >
+        AfterTransferBill = #{afterTransferBill,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzxx" >
+    update t_10_zzxx
+    set GoodsBillCode = #{goodsBillCode,jdbcType=VARCHAR},
+      TransferStation = #{transferStation,jdbcType=VARCHAR},
+      TransferCheck = #{transferCheck,jdbcType=VARCHAR},
+      CheckTime = #{checkTime,jdbcType=TIMESTAMP},
+      Description = #{description,jdbcType=VARCHAR},
+      TransferCompany = #{transferCompany,jdbcType=VARCHAR},
+      TransferAddr = #{transferAddr,jdbcType=VARCHAR},
+      TransferStationTel = #{transferStationTel,jdbcType=VARCHAR},
+      TransferFee = #{transferFee,jdbcType=VARCHAR},
+      AfterTransferBill = #{afterTransferBill,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
