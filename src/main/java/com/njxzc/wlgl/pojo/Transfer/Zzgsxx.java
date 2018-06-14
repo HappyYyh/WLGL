@@ -62,10 +62,5 @@ public class Zzgsxx {
                 '}';
     }
 
-    public Zzgsxx(String city, String companyName, String linkPhone, String detailAddress) {
-        this.city = city;
-        this.companyName = companyName;
-        this.linkPhone = linkPhone;
-        this.detailAddress = detailAddress;
-    }
+
 }

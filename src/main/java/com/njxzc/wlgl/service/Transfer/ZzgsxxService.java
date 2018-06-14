@@ -13,7 +13,7 @@ public interface ZzgsxxService {
     //查询中转公司信息
     ArrayList<Zzgsxx> queryZzgsxx(Zzgsxx zzgsxx);
 
-    //跟新
+
     int updateByPrimaryKey(Zzgsxx zzgsxx);
    /* int insertSelective(com.njxzc.wlgl.pojo.Transfer.Zzgsxx record);
 
