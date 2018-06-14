@@ -2,6 +2,13 @@ package com.njxzc.wlgl.pojo.cost_accounting;
 
 import java.util.Date;
 
+/**
+ * 营业外收入
+ * name：事件名称
+ * money：金额
+ * incomeMonth：收入月份
+ * writeDate：填写日期
+ */
 public class Yywsr {
     private Integer id;
 
@@ -51,5 +58,27 @@ public class Yywsr {
 
     public void setWriteDate(Date writeDate) {
         this.writeDate = writeDate;
+    }
+
+    public Yywsr(Integer id, String name, Double money, Date incomeMonth, Date writeDate) {
+        this.id = id;
+        this.name = name;
+        this.money = money;
+        this.incomeMonth = incomeMonth;
+        this.writeDate = writeDate;
+    }
+
+    public Yywsr() {
+    }
+
+    @Override
+    public String toString() {
+        return "Yywsr{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", money=" + money +
+                ", incomeMonth=" + incomeMonth +
+                ", writeDate=" + writeDate +
+                '}';
     }
 }
