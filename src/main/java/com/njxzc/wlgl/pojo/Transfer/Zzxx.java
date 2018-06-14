@@ -112,4 +112,21 @@ public class Zzxx {
     public void setAfterTransferBill(String afterTransferBill) {
         this.afterTransferBill = afterTransferBill == null ? null : afterTransferBill.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Zzxx{" +
+                "id=" + id +
+                ", goodsBillCode='" + goodsBillCode + '\'' +
+                ", transferStation='" + transferStation + '\'' +
+                ", transferCheck='" + transferCheck + '\'' +
+                ", checkTime=" + checkTime +
+                ", description='" + description + '\'' +
+                ", transferCompany='" + transferCompany + '\'' +
+                ", transferAddr='" + transferAddr + '\'' +
+                ", transferStationTel='" + transferStationTel + '\'' +
+                ", transferFee='" + transferFee + '\'' +
+                ", afterTransferBill='" + afterTransferBill + '\'' +
+                '}';
+    }
 }
