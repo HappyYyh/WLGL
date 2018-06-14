@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Service
 public class ZzgsxxServiceImpl implements ZzgsxxService {
-
+//实现类
     @Autowired
     ZzgsxxMapper zzgsxxMapper;
 

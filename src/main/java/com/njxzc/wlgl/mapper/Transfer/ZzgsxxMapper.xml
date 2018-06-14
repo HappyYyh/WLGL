@@ -27,7 +27,7 @@
     values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
       #{linkPhone,jdbcType=VARCHAR}, #{detailAddress,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzgsxx" >
+  <!--<insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzgsxx" >
     insert into t_11_zzgsxx
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -63,7 +63,7 @@
         #{detailAddress,jdbcType=VARCHAR},
       </if>
     </trim>
-  </insert>
+  </insert>-->
   <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzgsxx" >
     update t_11_zzgsxx
     <set >

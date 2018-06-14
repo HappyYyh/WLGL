@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @RequestMapping("/transfer")
 public class ZzgsxxController {
 
-    //来到中转信息公司管理增加界面
+    //来到中转信息公司管理增加界面.
     @RequestMapping("/ZzgsxxAdd")
     public String toCityAdd() {
         return "transfer/Zzgsxxadd";
