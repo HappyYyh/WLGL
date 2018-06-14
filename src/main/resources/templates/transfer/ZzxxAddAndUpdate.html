@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>中转信息添加/修改</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+
+    <script>
+        //时间选择器
+        laydate.render({
+            elem: '#checkTime'
+            , type: 'datetime'
+        });
+    </script>
+
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+<div id="middle">
+    <div th:replace="~{commons/bar :: left}"></div>
+    <div class="right" id="mainFrame">
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                中转信息增加/修改
+            </ul>
+        </div>
+
+        <div align="center" id="ZzxxAddMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <!--需要区分是修改还是添加-->
+            <form action="/transfer/zzxx" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${ZZXX!=null}"/>
+                <input type="hidden" name="id" th:if="${ZZXX!=null}" th:value="${ZZXX.id}"/>
+                <span>货运单编号：</span><input type="text" name="goodsBillCode"
+                                          th:value="${ZZXX!=null}?${ZZXX.goodsBillCode}"/><br>
+                <span>中  转  地：</span><input type="text" name="transferStation"
+                                            th:value="${ZZXX!=null}?${ZZXX.transferStation}"/><br>
+                <span>中转验收人：</span><input type="text" name="transferCheck"
+                                          th:value="${ZZXX!=null}?${ZZXX.transferCheck}"/><br>
+                <span>验 收 时 间：</span><input type="text" name="checkTime" id="checkTime"
+                                            th:value="${ZZXX!=null}?${ZZXX.checkTime}"/><br>
+                <span>描     述：</span><input type="text" name="description"
+                                            th:value="${ZZXX!=null}?${ZZXX.description}"/><br>
+                <span>中转公司名：</span><input type="text" name="transferCompany"
+                                          th:value="${ZZXX!=null}?${ZZXX.transferCompany}"/><br>
+                <span>中转 地址：</span><input type="text" name="transferAddr"
+                                          th:value="${ZZXX!=null}?${ZZXX.transferAddr}"/><br>
+                <span>中转地电话：</span><input type="text" name="transferStationTel"
+                                          th:value="${ZZXX!=null}?${ZZXX.transferStationTel}"/><br>
+                <span>中  转  费：</span><input type="text" name="transferFee"
+                                            th:value="${ZZXX!=null}?${ZZXX.transferFee}"/><br>
+                <span>中转后单号：</span><input type="text" name="afterTransferBill"
+                                          th:value="${ZZXX!=null}?${ZZXX.afterTransferBill}"/><br>
+
+                <div align="center">
+                    <input type="submit" class="btn btn-primary" th:value="${ZZXX!=null}?'修改':'添加'">
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

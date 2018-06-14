@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>中转信息查询</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+
+    <script type="text/javascript">
+        function showDetail(id) {
+            $("#Querydetail").show();
+            var url = '/transfer/detail';
+            $.post(url, {id: id}, function (zzxx) {
+                $("#goodsBillCode").text(zzxx.goodsBillCode);
+                $("#transferStation").text(zzxx.transferStation);
+                $("#transferCheck").text(zzxx.transferCheck);
+                $("#checkTime").text(zzxx.checkTime);
+                $("#description").text(zzxx.description);
+                $("#transferCompany").text(zzxx.transferCompany);
+                $("#transferAddr").text(zzxx.transferAddr);
+                $("#transferStationTel").text(zzxx.transferStationTel);
+                $("#transferFee").text(zzxx.transferFee);
+                $("#afterTransferBill").text(zzxx.afterTransferBill);
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">应用管理</a> <span class="divider">/</span>
+                中转信息查询
+            </ul>
+        </div>
+
+        <div id="SjxxQueryMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <div style="height: 60%">
+                <table align="center" class="table table-striped table-hover table-bordered table-condensed" border="1"
+                       width="80%" height="50%">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>货运单编号</th>
+                        <th>中转地</th>
+                        <!--<th>中转验收人</th>-->
+                        <th>验收时间</th>
+                        <!--<th>描述</th>-->
+                        <th>中转公司名</th>
+                        <!--<th>中转地址</th>-->
+                        <!--<th>中转地电话</th>-->
+                        <th>中转费</th>
+                        <!--<th>中转后单号</th>-->
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="zzxx:${list}" th:onclick="'showDetail('+${zzxx.id}+')'">
+                        <td th:text="${zzxx.id}" align="center"></td>
+                        <td th:text="${zzxx.goodsBillCode}" align="center">
+                            <!--<a th:onclick="'showDetail('+${zzxx.id}+')'">[[${zzxx.driverName}]]</a>-->
+                        </td>
+                        <td th:text="${zzxx.transferStation}" align="center"></td>
+                        <td th:text="${zzxx.checkTime}" align="center"></td>
+                        <td th:text="${zzxx.transferCompany}" align="center"></td>
+                        <td th:text="${zzxx.transferFee}" align="center"></td>
+                        <td align="center">
+                            <a class="btn btn-small btn-primary" th:href="@{/transfer/zzxx/}+${zzxx.id}">编辑</a>
+                            <button th:onclick="'del('+${zzxx.id}+')'" class="btn btn-small btn-danger">删除</button>
+                            <!--<button th:attr="delete_url=@{/application/sjxx/}+${sjxx.id}" onclick="del()" class="btn btn-small btn-danger">删除</button>-->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div align="center" id="Querydetail" style="height: 40%;display: none">
+                <div id="left" style="width: 33%;float: left" align="center">
+                    <span>货运单编号：</span><span id="goodsBillCode">1</span><br>
+                    <span>中转地：</span><span id="transferStation">1</span><br>
+                    <span>中转验收人：</span><span id="transferCheck">1</span><br>
+                    <span>验收时间：</span><span id="checkTime">1</span><br>
+                    <span>描述：</span><span id="description">1</span><br>
+                    <span>中转公司名：</span><span id="transferCompany">1</span><br>
+                    <span>中转地址：</span><span id="transferAddr">1</span><br>
+                    <span>中转地电话：</span><span id="transferStationTel">1</span><br>
+                    <span>中转费：</span><span id="transferFee">1</span><br>
+                    <span>中转后单号：</span><span id="afterTransferBill">1</span><br>
+                </div>
+            </div>
+
+            <!--删除-->
+            <form id="deleteForm" action="/transfer/ZzxxDelete" method="post">
+                <!--<input type="hidden" name="_method" value="delete"/>-->
+                <input type="hidden" name="id" id="deleteId"/>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    !function () {
+        laydate.skin('molv');
+        laydate({elem: '#Calendar'});
+    }();
+
+    function del(id) {
+        $("#deleteId").val(id);
+        $("#deleteForm").submit();
+    }
+</script>
+</body>
+</html>
