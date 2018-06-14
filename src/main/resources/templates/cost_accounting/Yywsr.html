@@ -137,10 +137,10 @@
     var datetemp;//全局变量用于存储数据
     function YywsrQuery() {
         $.ajax({
-           type:'get',
+           type:'post',
            url: '/cost_accounting/YywsrQuery',
            data: {minMoney:$("#minMoney").val(),maxMoney:$("#maxMoney").val(),
-                  dataStart:$("#dateStart").val(),dataEnd:$("#dateEnd").val()},
+                  dateStart:$("#dateStart").val(),dateEnd:$("#dateEnd").val()},
            success:function (result) {
                datetemp = result;
                var tb = $("#tb");

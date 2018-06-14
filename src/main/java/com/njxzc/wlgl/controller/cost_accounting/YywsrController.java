@@ -4,10 +4,12 @@ import com.njxzc.wlgl.pojo.cost_accounting.Yywsr;
 import com.njxzc.wlgl.service.cost_accounting.YywsrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -62,10 +64,8 @@ public class YywsrController {
      */
     @RequestMapping("/YywsrQuery")
     @ResponseBody
-    public List<Yywsr> query(Double minMoney, Double maxMoney,
-                             Date dateStart, Date dateEnd){
-        List<Yywsr> list = yywsrService.queryByCondition(minMoney, maxMoney, dateStart, dateEnd);
-        //System.out.println(dateStart+"---"+dateEnd);
-        return list;
+    public List<Yywsr> query(Double minMoney,Double maxMoney,
+                             Date dateStart,Date dateEnd){
+        return yywsrService.queryByCondition(minMoney, maxMoney, dateStart, dateEnd);
     }
 }
