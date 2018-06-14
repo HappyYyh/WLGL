@@ -1763,8 +1763,8 @@ select:focus:invalid:focus {
 .input-append select,
 .input-append .uneditable-input {
   -webkit-border-radius: 4px 0 0 4px;
-     -moz-border-radius: 4px 0 0 0px
-          border-radius: 4px 0 0 0px
+     -moz-border-radius: 4px 0 0 0px;
+          border-radius: 4px 0 0 0px;
 }
 
 .input-append input + .btn-group .btn:last-child,
@@ -1808,8 +1808,8 @@ select:focus:invalid:focus {
 .input-prepend.input-append .add-on:first-child,
 .input-prepend.input-append .btn:first-child {
   margin-right: -1px;
-  -webkit-border-radius: 4px 0 0 0px
-     -moz-border-radius: 4px 0 0 0px
+  -webkit-border-radius: 4px 0 0 0px;
+     -moz-border-radius: 4px 0 0 0px;
           border-radius: 4px 0 0 0px
 }
 
