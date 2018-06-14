@@ -50,4 +50,15 @@ public class Zzgsxx {
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress == null ? null : detailAddress.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Zzgsxx{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", linkPhone='" + linkPhone + '\'' +
+                ", detailAddress='" + detailAddress + '\'' +
+                '}';
+    }
 }
