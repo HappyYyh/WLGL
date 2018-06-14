@@ -90,4 +90,13 @@
       DetailAddress = #{detailAddress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryZzgsxx" parameterType="com.njxzc.wlgl.pojo.Transfer.Zzgsxx" resultType="com.njxzc.wlgl.pojo.Transfer.Zzgsxx">
+    select * from t_11_zzgsxx
+    <where>
+      <if test="city!=null and city!='' ">
+        and City =#{city,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>
