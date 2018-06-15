@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.cost_accounting.PcxxMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.cost_accounting.Pcxx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Amends" property="amends" jdbcType="DOUBLE" />
+    <result column="Customer" property="customer" jdbcType="VARCHAR" />
+    <result column="AmendsTime" property="amendsTime" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ReceiveStationID" property="receiveStationID" jdbcType="INTEGER" />
+    <result column="BadDestroyGoods" property="badDestroyGoods" jdbcType="DOUBLE" />
+    <result column="ReceiveStationName" property="receiveStationName" jdbcType="VARCHAR" />
+    <result column="WriteDate" property="writeDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, Amends, Customer, AmendsTime, Remark, ReceiveStationID, BadDestroyGoods, ReceiveStationName, 
+    WriteDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_24_pcxx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_24_pcxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Pcxx" >
+    insert into t_24_pcxx ( Amends, Customer,
+      AmendsTime, Remark, ReceiveStationID, 
+      BadDestroyGoods, ReceiveStationName, WriteDate
+      )
+    values ( #{amends,jdbcType=DOUBLE}, #{customer,jdbcType=VARCHAR},
+      #{amendsTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{receiveStationID,jdbcType=INTEGER}, 
+      #{badDestroyGoods,jdbcType=DOUBLE}, #{receiveStationName,jdbcType=VARCHAR}, #{writeDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Pcxx" >
+    update t_24_pcxx
+    <set >
+      <if test="amends != null " >
+        Amends = #{amends,jdbcType=DOUBLE},
+      </if>
+      <if test="customer != null and customer!=''" >
+        Customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="amendsTime != null " >
+        AmendsTime = #{amendsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null and remark!=''" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveStationID != null " >
+        ReceiveStationID = #{receiveStationID,jdbcType=INTEGER},
+      </if>
+      <if test="badDestroyGoods != null " >
+        BadDestroyGoods = #{badDestroyGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="receiveStationName != null and receiveStationName!=''" >
+        ReceiveStationName = #{receiveStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="writeDate != null" >
+        WriteDate = #{writeDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryByCondition"  resultType="com.njxzc.wlgl.pojo.cost_accounting.Pcxx">
+    select 
+    <include refid="Base_Column_List"/>
+    from t_24_pcxx
+    <where>
+      <if test="customer!=null and customer!=''">
+        and Customer like '%${customer}%'
+      </if>
+      <if test="receiveStationName!=''">
+        and ReceiveStationName = #{receiveStationName}
+      </if>
+      <if test="startAmendsTime!=null">
+        and AmendsTime >= #{startAmendsTime}
+      </if>
+      <if test="endAmendsTime!=null">
+        and AmendsTime &lt;= #{endAmendsTime}
+      </if>
+    </where>
+  </select>
+</mapper>

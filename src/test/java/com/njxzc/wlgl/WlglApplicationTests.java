@@ -1,7 +1,9 @@
 package com.njxzc.wlgl;
 
 import com.njxzc.wlgl.mapper.application.SjxxMapper;
+import com.njxzc.wlgl.mapper.cost_accounting.PcxxMapper;
 import com.njxzc.wlgl.mapper.cost_accounting.YywsrMapper;
+import com.njxzc.wlgl.pojo.cost_accounting.Pcxx;
 import com.njxzc.wlgl.pojo.cost_accounting.Yywsr;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +30,9 @@ public class WlglApplicationTests {
 
     @Autowired
     DataSource dataSource;
+
+    @Autowired
+    PcxxMapper pcxxMapper;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
@@ -56,6 +61,15 @@ public class WlglApplicationTests {
         List<Yywsr> list1 = yywsrMapper.queryByCondition(null, null, null, null);
         for (Yywsr yywsr:list1) {
             System.out.println(yywsr.toString());
+        }
+    }
+
+    @Test
+    public void testQueryPcxx(){
+        List<Pcxx> list = pcxxMapper.queryByCondition
+                ("三","",null,null);
+        for (Pcxx x:list){
+            System.out.println(x.toString());
         }
     }
 

@@ -16,3 +16,19 @@ Date.prototype.Format = function (fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 };
+/*对int类型的null值进行处理*/
+function HandleNUll(value) {
+    if(value==null){
+        return 0;
+    }else {
+        return value;
+    }
+}
+/*对日期为空的处理*/
+function HandleDate(value) {
+    if(value == "1970-01-01 08:00:00"){
+        return "";
+    }else {
+        return value;
+    }
+}

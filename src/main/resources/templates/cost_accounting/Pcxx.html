@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>赔偿信息</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <link rel="stylesheet" th:href="@{/css/cost_accounting/Yywsr.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+    <script type="text/javascript" th:src="@{/js/util.js}"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="/main">首页</a> <span class="divider">/</span>
+                <a href="#">成本核算</a> <span class="divider">/</span>
+                赔偿信息
+            </ul>
+        </div>
+        <div style="height: 55%">
+            <div align="center" style="margin-top: 50px">
+            <input type="text" placeholder="请输入顾客名称" id="name" />
+            <input type="text" placeholder="请输入收获地点" id="place"/>
+            <input type="text" placeholder="请输入赔偿开始日期" id="start"/>
+            <input type="text" placeholder="请输入赔偿结束日期" id="end"/>
+            <button class="btn-primary" onclick="PcxxQuery()">查询</button>
+            <button onclick="showAdd()"  class="btn-success">添加</button>
+            </div>
+            <table class="table table-bordered" style="margin-top: 20px">
+                <thead>
+                    <th>赔偿费</th>
+                    <th>客户名称</th>
+                    <th>赔偿时间</th>
+                    <th>备注</th>
+                    <th>收货点ID</th>
+                    <th>货差货损</th>
+                    <th>收货点名</th>
+                    <th>填写日期</th>
+                    <th>操作</th>
+                </thead>
+                <tbody id="tb" align='center'>
+
+                </tbody>
+            </table>
+
+        </div>
+        <div style="height: 45%;width: 100%">
+            <div id="divAdd">
+            <form action="/cost_accounting/Pcxx" method="post">
+                <span class="span1-1">赔偿费：</span><input type="text" name="amends"/><br>
+                <span class="span1-1">客户名称：</span>
+                <select id="customer" style="height: 25px"  onclick="showCustomerName()" name="customer">
+                </select><br>
+                <span class="span1-1">赔偿时间：</span><input type="text" name="amendsTime" id="adAmendsTime" /><br>
+                <span class="span1-1">备注：</span><input type="text" name="remark" /><br>
+                <span class="span1-1">收货点ID：</span><input type="text" name="receiveStationID"/><br>
+                <span class="span1-1">货差货损：</span><input type="text" name="badDestroyGoods"/><br>
+                <span class="span1-1">收货点名：</span><input type="text" name="receiveStationName" /><br>
+                <span class="span1-1">填写日期：</span><input type="text" name="writeDate" id="adWriteDate" /><br>
+                <input type="submit" value="添加记录" class="btn-success"/>
+            </form>
+            </div>
+            <div id="divUpdate">
+                <form action="/cost_accounting/PcxxUpdate" method="post">
+                    <input name="id" type="hidden" id="upId"/>
+                    <span class="span1-1">赔偿费：</span><input type="text" name="amends" id="upAmends"/><br>
+                    <span class="span1-1">客户名称：</span><input type="text" name="customer" id="upCustomer"/><br>
+                    <span class="span1-1">赔偿时间：</span><input type="text" name="amendsTime" id="upAmendsTime" /><br>
+                    <span class="span1-1">备注：</span><input type="text" name="remark"id="upRemark" /><br>
+                    <span class="span1-1">收货点ID：</span><input type="text" name="receiveStationID" id="upReceiveStationID"/><br>
+                    <span class="span1-1">货差货损：</span><input type="text" name="badDestroyGoods" id="upBadDestroyGoods"/><br>
+                    <span class="span1-1">收货点名：</span><input type="text" name="receiveStationName" id="upReceiveStationName" /><br>
+                    <span class="span1-1">填写日期：</span><input type="text" name="writeDate" id="upWriteDate" /><br>
+                    <input type="submit" value="修改记录" class="btn-primary"/>
+                </form>
+
+            </div>
+        </div>
+        <!--点击删除按钮后弹出的页面-->
+        <div class="zhezhao"></div>
+        <div class="remove" id="removeBi">
+            <div class="removerChid">
+                <h2>提示</h2>
+                <div class="removeMain">
+                    <form action="/cost_accounting/PcxxDelete" method="post" id="Delete_form">
+                        <p>你确定要删除该记录吗？</p>
+                        <input type="hidden" id="deId" name="id"/>
+                        <a href="#" id="yes">确定</a>
+                        <a href="#" id="no">取消</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:inline="javascript">
+    var flag = true;
+    function showCustomerName() {
+        var url='/application/queryCustomerName';
+        if(flag){
+            $.getJSON(url,function (result) {
+                $("#customer").html("");//清空数据
+                var msg = '';
+                $.each(result,function (index,list) {
+                    msg +="<option value='"+list+"'>"+list+"</option>" ;
+                });
+                $("#customer").append("<option value=''>请选择</option>"+msg);
+
+            });
+            flag = false;
+        }
+    }
+
+    function showAdd() {
+        $("#divAdd").toggle();
+    }
+
+    function showUpdate(id) {
+        $("#divUpdate").toggle();
+        $.each(datetemp,function (index,Pcxx) {
+          if(Pcxx.id==id){//如果传过来的id等于全局变量里面的循环里的id
+             $("#upId").val(id);
+             $("#upAmends").val(Pcxx.amends);
+             $("#upCustomer").val(Pcxx.customer);
+             $("#upAmendsTime").val(new Date(Pcxx.amendsTime).Format("yyyy-MM-dd HH:mm:ss"));
+             $("#upRemark").val(Pcxx.remark);
+             $("#upReceiveStationID").val(Pcxx.receiveStationID);
+             $("#upBadDestroyGoods").val(Pcxx.badDestroyGoods);
+             $("#upReceiveStationName").val(Pcxx.receiveStationName);
+             $("#upWriteDate").val(new Date(Pcxx.writeDate).Format("yyyy-MM-dd HH:mm:ss"));
+          }
+        })
+    }
+
+    //显现出删除框
+    function PcxxDelete(id) {
+        $('.zhezhao').css('display', 'block');
+        $('#removeBi').fadeIn();
+        $('#deId').val(id);
+    };
+    //取消
+    $(function () {
+        $('#no').click(function () {
+            $('.zhezhao').css('display', 'none');
+            $('#removeBi').fadeOut();
+        });
+    });
+    //确认删除
+    $(function () {
+        $('#yes').click(function () {
+            $('#Delete_form').submit();
+        });
+    });
+
+
+    var datetemp;//全局变量用于存储数据
+    function PcxxQuery() {
+        $.ajax({
+           type:'get',
+           url: '/cost_accounting/Pcxxs',
+           data: {name:$("#name").val(),place:$("#place").val(),
+                  start:$("#start").val(),end:$("#end").val()},
+           success:function (result) {
+               datetemp = result;
+               var tb = $("#tb");
+               tb.nextAll().remove();//清空tr防止重复追加数据
+               var msg='';
+               $.each(result,function (index,data) {
+                   var writeDate=new Date(data.writeDate).Format("yyyy-MM-dd HH:mm:ss");
+                   var amendsTime=new Date(data.amendsTime).Format("yyyy-MM-dd HH:mm:ss");
+                   msg +="<tr>" +
+                         "<td align='center'>"+data.amends+"</td>"+
+                         "<td align='center'>"+data.customer+"</td>"+
+                         "<td align='center'>"+HandleDate(amendsTime)+"</td>"+
+                         "<td align='center'>"+data.remark+"</td>"+
+                         "<td align='center'>"+HandleNUll(data.receiveStationID)+"</td>"+
+                         "<td align='center'>"+HandleNUll(data.badDestroyGoods)+"</td>"+
+                         "<td align='center'>"+data.receiveStationName+"</td>"+
+                         "<td align='center'>"+HandleDate(writeDate)+"</td>"+
+                         "<td align='center'>" +
+                         "<button class='btn-primary' onclick='showUpdate("+data.id+")'>修改</button>" +
+                         "<button class='btn-danger' onclick='PcxxDelete("+data.id+")'>删除</button></td>"+
+                         "</tr>";
+               });
+               tb.after(msg);
+           },
+           error:function () {
+               alert("通讯失败！")
+           } 
+        });
+    }
+</script>
+<script type="text/javascript">
+    //日期插件的使用
+    laydate.render({
+        elem: '#adAmendsTime'
+        ,type: 'datetime'
+    });
+
+    laydate.render({
+        elem: '#adWriteDate'
+        ,type: 'datetime'
+    });
+
+    laydate.render({
+        elem: '#upAmendsTime'
+        ,type: 'datetime'
+    });
+
+    laydate.render({
+        elem: '#upWriteDate'
+        ,type: 'datetime'
+    });
+
+    laydate.render({
+        elem: '#start'
+        ,type: 'datetime'
+    });
+
+    laydate.render({
+        elem: '#end'
+        ,type: 'datetime'
+    });
+
+</script>
+</body>
+</html>

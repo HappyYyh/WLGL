@@ -198,4 +198,9 @@
     <include refid="Base_Column_List"/>
     FROM t_25_khjbxx
    </select>
+
+  <select id="queryCustomerName" resultType="String">
+    select CustomerName
+    from t_25_khjbxx
+  </select>
 </mapper>

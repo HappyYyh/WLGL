@@ -1,4 +1,4 @@
-package com.njxzc.wlgl.controller.transfer;
+package com.njxzc.wlgl.controller.Transfer;
 
 import com.njxzc.wlgl.pojo.Transfer.Zzxx;
 import com.njxzc.wlgl.service.transfer.ZzxxService;
