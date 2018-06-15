@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+    <title>中转信息公司管理</title>
+</head>
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">中转管理</a> <span class="divider">/</span>
+                中转公司信息
+            </ul>
+        </div>
+
+    <div align="center">
+        <form action="/transfer/addZzgsxx" method="post">
+
+            <span style="color:blue" class="text-danger"> 中转城市:</span> <input type="text" class="form-control" placeholder="请输入城市" name="city"><br><br>
+            <span style="color:blue" class="text-danger">公司名称:</span> <input type="text" class="form-control" placeholder="请输入公司名称" name="companyName"><br><br>
+            <span style="color:blue" class="text-danger"> 联系电话:</span> <input type="text" class="form-control" placeholder="请输入联系电话" name="linkPhone"><br><br>
+            <span style="color:blue" class="text-danger"> 详细地址:</span> <input type="text" class="form-control" placeholder="请输入详细地址" name="detailAddress"><br><br>
+            <button type="submit" class="btn btn-success" >提交</button>
+        </form>
+
+    </div>
+    </div>
+</div>
+</body>
+</html>
