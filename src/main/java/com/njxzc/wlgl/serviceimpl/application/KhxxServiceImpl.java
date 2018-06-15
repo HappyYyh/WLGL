@@ -41,5 +41,10 @@ public class KhxxServiceImpl implements KhxxService {
         km.updateByPrimaryKeySelective(khxx);
     }
 
+    @Override
+    public List<String> queryCustomerName() {
+        return km.queryCustomerName();
+    }
+
 
 }

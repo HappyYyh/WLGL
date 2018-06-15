@@ -12,4 +12,6 @@ public interface KhxxService {
     List<Khxx> queryAll();
 
     void updateByPrimaryKeySelective(Khxx khxx);
+
+    List<String> queryCustomerName();
 }

@@ -58,4 +58,11 @@ public class KhxxController {
         ks.deleteByPrimaryKey(id);
         return "redirect:/application/khxxs";
     }
+
+    //查询客户名称
+    @RequestMapping("/queryCustomerName")
+    @ResponseBody
+    public List<String> queryCustomerName(){
+        return ks.queryCustomerName();
+    }
 }

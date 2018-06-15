@@ -15,4 +15,6 @@ public interface KhxxMapper {
     int deleteByPrimaryKey(Integer id);
 
     void updateByPrimaryKeySelective(Khxx khxx);
+
+    List<String> queryCustomerName();//查询客户名称
 }
