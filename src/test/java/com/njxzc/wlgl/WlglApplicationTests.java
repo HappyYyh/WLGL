@@ -32,15 +32,4 @@ public class WlglApplicationTests {
         connection.close();
     }
 
-    @Test
-  public void testUpdate(){
-        Yggz yggz=new Yggz();
-        yggz.setId(5);
-        yggz.setAllowance(22.2);
-        yggz.setBasicWage(122.2);
-        yggz.setStationWage(13.2);
-        yggzMapper.updateByPrimaryKeySelective(yggz);
-
-    }
-
 }
