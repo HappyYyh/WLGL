@@ -1,6 +1,8 @@
 package com.njxzc.wlgl;
 
 import com.njxzc.wlgl.mapper.application.SjxxMapper;
+import com.njxzc.wlgl.mapper.cost_accounting.YggzMapper;
+import com.njxzc.wlgl.pojo.cost_accounting.Yggz;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ public class WlglApplicationTests {
 
     @Autowired
     SjxxMapper sjxxMapper;
+    YggzMapper yggzMapper;
 
     @Autowired
     DataSource dataSource;
@@ -27,6 +30,17 @@ public class WlglApplicationTests {
         Connection connection=dataSource.getConnection();
         System.out.println(connection);
         connection.close();
+    }
+
+    @Test
+  public void testUpdate(){
+        Yggz yggz=new Yggz();
+        yggz.setId(5);
+        yggz.setAllowance(22.2);
+        yggz.setBasicWage(122.2);
+        yggz.setStationWage(13.2);
+        yggzMapper.updateByPrimaryKeySelective(yggz);
+
     }
 
 }

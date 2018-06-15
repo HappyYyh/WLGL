@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>员工信息查询</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
+    <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}"/>
+    <script type="text/javascript" src="js/jquery1.9.0.min.js" th:src="@{/js/jquery1.9.0.min.js}"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="js/sdmenu.js" th:src="@{/js/sdmenu.js}"></script>
+    <script type="text/javascript" src="js/laydate/laydate.js" th:src="@{/js/laydate/laydate.js}"></script>
+</head>
+
+<body>
+<div th:replace="~{commons/bar :: header}"></div>
+
+<div id="middle">
+
+    <div th:replace="~{commons/bar :: left}"></div>
+
+    <div class="right" id="mainFrame">
+
+        <div class="right_cont">
+            <ul class="breadcrumb">当前位置：
+                <a href="#">首页</a> <span class="divider">/</span>
+                <a href="#">成本核算</a> <span class="divider">/</span>
+                员工信息查询
+            </ul>
+        </div>
+        <div id="YggzQueryMain" style="width: 80%;height: 80%;margin: auto;left: 0;right: 0;top: 0;bottom: 0">
+            <div style="height: 60%">
+            <table align="center" border="1" width="80%" height="50%" >
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>职员编号</th>
+                    <th>职员姓名</th>
+                    <th>基本工资</th>
+                    <th>岗位工资</th>
+                    <th>津    贴</th>
+                    <th>日    期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr th:each="yggz:${list}" >
+                      <!--  <form action="/cost_accounting/add" method="post">
+                            <input type="hidden" name="id">
+                            <td  th:text="${zyxx.id}" align="center"></td>
+                            <td><input type="text" name="employeeCode" align="center" value="${zyxx.employeeCode}"></td>
+                            <td><input type="text" name="employee" align="center" value="${zyxx.employee}"></td>
+
+                            <td><input type="submit" value="编辑工资"></td>
+                        </form>-->
+                        <td  th:text="${yggz.id}" align="center"></td>
+                        <td  id="employeeCode" th:text="${yggz.employeeCode}" align="center"></td>
+                        <td id="employee" th:text="${yggz.employee}" align="center"></td>
+                        <td  id="basicWage" th:text="${yggz.basicWage}" align="center"></td>
+                        <td id="stationWage" th:text="${yggz.stationWage}" align="center"></td>
+                        <td  id="allowance" th:text="${yggz.allowance}" align="center"></td>
+                        <td id="date" th:text="${yggz.date}" align="center"></td>
+                        <td align="center">
+                             <!--<a class="btn btn-small btn-primary" th:href="@{'/cost_accounting/add'+${yggz.employeeCode}}">编辑工资</a><br/>-->
+                            <!--<a href="#" onclick="ShowForm(this)" ${zyxx.employeeCode}></a>-->
+                            <button  class="btn btn-small btn-danger" id="1" th:value="${yggz.id}" onclick="ShowForm(this)">编辑工资</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div id="adaYggz" class="login" style="width: 30%;height: 30%;margin: auto;left: 0;right: 0;top: 0;bottom: 0;display: none">
+                <form action="/cost_accounting/update" method="post">
+                    <input type="hidden" name="id" id="2" value=""/><br>
+                <!--    <span>员工姓名</span> <input  id="3" type="text" name="employee" /><br>-->
+                    <span>基本工资：</span><input type="text" name="basicWage" placeholder="请输入基本工资"/><br>
+                    <span>岗位工资：</span><input type="text" name="stationWage" placeholder="请输入岗位工资"/><br>
+                    <span>津贴：</span><input type="text" name="allowance" placeholder="请输入津贴"/><br>
+                    <span>日    期：</span><input type="text" id="test1" name="date" placeholder="请输入日期"/><br>
+                    <input type="submit"  class="btn btn-small btn-danger" value="更新"/>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
+
+<script>
+    function ShowForm(element) {
+       // alert(element.value);
+        var value=element.value; //把button中的动态值拿出来
+        document.getElementById(2).value=value; //把button中的动态之赋值给需要的input标签
+        $("#adaYggz").toggle(200);
+    }
+</script>
+
+
+<!--
+<script>
+    $("#modify").click(function (element) {
+        $("#AddDqcs").toggle(200);
+    })
+</script>-->
+</body>
+</html>

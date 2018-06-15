@@ -46,7 +46,7 @@
                 <span>部  门：</span><input type="text" name="department" placeholder="请输入部门" th:value="${ZY!=null}?${ZY.department}"/><br>
                 <span>职  位：</span><input type="text" name="position" placeholder="请输入职位" th:value="${ZY!=null}?${ZY.position}"/><br>
                 <span>性  别：</span><input type="text" name="gender" placeholder="请输入性别" th:value="${ZY!=null}?${ZY.gender}"/><br>
-                <span>出生日期：</span><input type="text" name="birthday" placeholder="请输入出生日期" th:value="${ZY!=null}?${ZY.birthday}"/><br>
+                <span>出生日期：</span><input type="text" id="test1" name="birthday" placeholder="请输入出生日期" th:value="${ZY!=null}?${ZY.birthday}"/><br>
                 <input type="submit" class="btn btn-primary" th:value="${ZY!=null}?'修改':'添加'">
             </div>
             <div align="center">
@@ -67,6 +67,11 @@
 
 </script>
 
-
+<script>
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
 </body>
 </html>
