@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.cost_accounting.CwfyMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.cost_accounting.Cwfy" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="FinanceFee" property="financeFee" jdbcType="DOUBLE" />
+    <result column="PayoutMonth" property="payoutMonth" jdbcType="TIMESTAMP" />
+    <result column="WriteDate" property="writeDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, FinanceFee, PayoutMonth, WriteDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_22_cwfy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_22_cwfy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Cwfy" >
+    insert into t_22_cwfy (FinanceFee, PayoutMonth,
+      WriteDate)
+    values (#{financeFee,jdbcType=DOUBLE}, #{payoutMonth,jdbcType=TIMESTAMP},
+      #{writeDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Cwfy" >
+    insert into t_22_cwfy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="financeFee != null" >
+        FinanceFee,
+      </if>
+      <if test="payoutMonth != null" >
+        PayoutMonth,
+      </if>
+      <if test="writeDate != null" >
+        WriteDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="financeFee != null" >
+        #{financeFee,jdbcType=DOUBLE},
+      </if>
+      <if test="payoutMonth != null" >
+        #{payoutMonth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="writeDate != null" >
+        #{writeDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Cwfy" >
+    update t_22_cwfy
+    <set >
+      <if test="financeFee != null" >
+        FinanceFee = #{financeFee,jdbcType=DOUBLE},
+      </if>
+      <if test="payoutMonth != null" >
+        PayoutMonth = #{payoutMonth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="writeDate != null" >
+        WriteDate = #{writeDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Cwfy" >
+    update t_22_cwfy
+    set FinanceFee = #{financeFee,jdbcType=DOUBLE},
+      PayoutMonth = #{payoutMonth,jdbcType=TIMESTAMP},
+      WriteDate = #{writeDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryByCondition" resultType="com.njxzc.wlgl.pojo.cost_accounting.Cwfy">
+    select
+    <include refid="Base_Column_List"/>
+    from t_22_cwfy
+    <where>
+      <if test="payoutMonth!=null ">
+       and PayoutMonth = #{payoutMonth,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
