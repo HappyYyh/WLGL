@@ -2,16 +2,12 @@ package com.njxzc.wlgl.mapper.cost_accounting;
 
 import com.njxzc.wlgl.pojo.cost_accounting.Yggz;
 
+import java.util.List;
+
 public interface YggzMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Yggz record);
+    List<Yggz> queryAll();//查询全部
+    void updateByPrimaryKeySelective(Yggz yggz);//更新操作
 
-    int insertSelective(Yggz record);
 
-    Yggz selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Yggz record);
-
-    int updateByPrimaryKey(Yggz record);
 }

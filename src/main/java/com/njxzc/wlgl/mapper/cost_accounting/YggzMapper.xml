@@ -19,18 +19,28 @@
     from t_21_yggz
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_21_yggz
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_21_yggz
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
-    insert into t_21_yggz (id, EmployeeCode, BasicWage, 
+    insert into t_21_yggz (EmployeeCode, BasicWage,
       StationWage, Allowance, Date, 
       Employee)
-    values (#{id,jdbcType=INTEGER}, #{employeeCode,jdbcType=VARCHAR}, #{basicWage,jdbcType=DOUBLE}, 
-      #{stationWage,jdbcType=DOUBLE}, #{allowance,jdbcType=DOUBLE}, #{date,jdbcType=TIMESTAMP}, 
+    values (#{employeeCode,jdbcType=VARCHAR}, #{basicWage,jdbcType=DOUBLE},
+      #{stationWage,jdbcType=DOUBLE}, #{allowance,jdbcType=DOUBLE}, #{date,jdbcType=VARCHAR},
       #{employee,jdbcType=VARCHAR})
   </insert>
+
+
   <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Yggz" >
     insert into t_21_yggz
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -96,7 +106,7 @@
         Allowance = #{allowance,jdbcType=DOUBLE},
       </if>
       <if test="date != null" >
-        Date = #{date,jdbcType=TIMESTAMP},
+        Date = #{date,jdbcType=VARCHAR},
       </if>
       <if test="employee != null" >
         Employee = #{employee,jdbcType=VARCHAR},
@@ -114,4 +124,7 @@
       Employee = #{employee,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+
 </mapper>

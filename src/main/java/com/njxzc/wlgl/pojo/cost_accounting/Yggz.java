@@ -1,7 +1,5 @@
 package com.njxzc.wlgl.pojo.cost_accounting;
 
-import java.util.Date;
-
 public class Yggz {
     private Integer id;
 
@@ -13,7 +11,7 @@ public class Yggz {
 
     private Double allowance;
 
-    private Date date;
+    private String date;
 
     private String employee;
 
@@ -57,11 +55,11 @@ public class Yggz {
         this.allowance = allowance;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -72,4 +70,20 @@ public class Yggz {
     public void setEmployee(String employee) {
         this.employee = employee == null ? null : employee.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Yggz{" +
+                "id=" + id +
+                ", employeeCode='" + employeeCode + '\'' +
+                ", basicWage=" + basicWage +
+                ", stationWage=" + stationWage +
+                ", allowance=" + allowance +
+                ", date='" + date + '\'' +
+                ", employee='" + employee + '\'' +
+                '}';
+    }
+
+
+
 }
