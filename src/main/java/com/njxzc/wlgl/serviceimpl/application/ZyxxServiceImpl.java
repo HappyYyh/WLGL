@@ -21,6 +21,11 @@ ZyxxMapper zyxxMapper;
     }
 
     @Override
+    public int add(Zyxx zyxx) {
+        return zyxxMapper.add(zyxx);
+    }
+
+    @Override
     public List<Zyxx> queryAll() {
        return zyxxMapper.queryAll();
     }

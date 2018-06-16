@@ -31,6 +31,13 @@
       #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
       #{birthday,jdbcType=VARCHAR})
   </insert>
+
+  <insert id="add" parameterType="com.njxzc.wlgl.pojo.application.Zyxx" >
+     insert into t_21_yggz (Employee,EmployeeCode)
+    values (#{employee,jdbcType=VARCHAR},#{employeeCode,jdbcType=VARCHAR})
+  </insert>
+
+
   <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.application.Zyxx" >
     insert into t_26_zyxx
     <trim prefix="(" suffix=")" suffixOverrides="," >

@@ -1,7 +1,9 @@
 package com.njxzc.wlgl.controller.application;
 
+import com.njxzc.wlgl.mapper.cost_accounting.YggzMapper;
 import com.njxzc.wlgl.pojo.application.Zyxx;
 import com.njxzc.wlgl.service.application.ZyxxService;
+import com.njxzc.wlgl.service.cost_accounting.YggzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +24,11 @@ public class ZyxxController {
         return "application/ZyxxAddAndUpdate";
     }
 
-    //职员信息添加
+    //职员信息添加 同时把职员信息放在员工工资表中
     @PostMapping("/zyxx")
     public String Add(Zyxx zyxx){
-
         zyxxService.insert(zyxx);
+        zyxxService.add(zyxx);
         return "redirect:/application/zyxxs";
     }
 
