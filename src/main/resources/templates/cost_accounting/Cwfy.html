@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>营业外收入</title>
+    <title>财务费用</title>
     <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}"/>
     <link rel="stylesheet" th:href="@{/css/cost_accounting/Yywsr.css}"/>
@@ -30,24 +30,20 @@
             <ul class="breadcrumb">当前位置：
                 <a href="/main">首页</a> <span class="divider">/</span>
                 <a href="#">成本核算</a> <span class="divider">/</span>
-                营业外收入
+                财务费用
             </ul>
         </div>
         <div style="height: 60%">
             <div align="center" style="margin-top: 50px">
-            <input type="text" placeholder="请输入最低金额" id="minMoney" />
-            <input type="text" placeholder="请输入最高金额" id="maxMoney"/>
-            <input type="text" placeholder="请输入填写开始日期" id="dateStart"/>
-            <input type="text" placeholder="请输入填写结束日期" id="dateEnd"/>
-            <button class="btn-primary" onclick="YywsrQuery()">查询</button>
+            <input type="text" placeholder="请输入支出月份" id="payoutMonth" />
+            <button class="btn-primary" onclick="CwfyQuery()">查询</button>
             <button onclick="showAdd()"  class="btn-success">添加</button>
             </div>
             <table class="table table-bordered" style="margin-top: 20px">
                 <thead>
                     <th>序号</th>
-                    <th>事件名称</th>
-                    <th>收入金额</th>
-                    <th>收入月份</th>
+                    <th>财务费用</th>
+                    <th>支出月份</th>
                     <th>填写日期</th>
                     <th>操作</th>
                 </thead>
@@ -59,21 +55,19 @@
         </div>
         <div style="height: 40%;width: 100%">
             <div id="divAdd">
-            <form action="/cost_accounting/YywsrAdd" method="post">
-                <span class="span1-1">事件名称：</span><input type="text" name="name"/><br>
-                <span class="span1-1">收入金额：</span><input type="text" name="money"/><br>
-                <span class="span1-1">收入月份：</span><input type="text" name="incomeMonth" id="incomeMonth"/><br>
+            <form action="/cost_accounting/CwfwAdd" method="post">
+                <span class="span1-1">财务费用：</span><input type="text" name="financeFee" /><br>
+                <span class="span1-1">支出月份：</span><input type="text" name="payoutMonth" id="payoutMonth"/><br>
                 <span class="span1-1">填写日期：</span><input type="text" name="writeDate" id="writeDate"/><br>
                 <input type="submit" value="添加记录" class="btn-success"/>
             </form>
             </div>
             <div id="divUpdate">
-                <form action="/cost_accounting/YywsrUpdate" method="post">
+                <form action="/cost_accounting/CwfyUpdate" method="post">
                     <input name="id" type="hidden" id="upId"/>
-                    <span class="span1-1">事件名称：</span><input type="text" name="name" id="upName"/><br>
-                    <span class="span1-1">收入金额：</span><input type="text" name="money" id="upMoney"/><br>
-                    <span class="span1-1">收入月份：</span><input type="text" name="incomeMonth" id="upIncomeMonth"/><br>
-                    <span class="span1-1">填写日期：</span><input type="text" name="writeDate" id="upWriteDate"/><br>
+                    <span class="span1-1">财务费用：</span><input type="text" name="financeFee" id="money"/><br>
+                    <span class="span1-1">支出月份：</span><input type="text" name="payoutMonth" id="payoutMonth1"/><br>
+                    <span class="span1-1">填写日期：</span><input type="text" name="writeDate" id="writeDate1"/><br>
                     <input type="submit" value="修改记录" class="btn-primary"/>
                 </form>
 
@@ -85,7 +79,7 @@
             <div class="removerChid">
                 <h2>提示</h2>
                 <div class="removeMain">
-                    <form action="/cost_accounting/YywsrDelete" method="post" id="Delete_form">
+                    <form action="/cost_accounting/CwfyDelete" method="post" id="Delete_form">
                         <p>你确定要删除该记录吗？</p>
                         <input type="hidden" id="deId" name="id"/>
                         <a href="#" id="yes">确定</a>
@@ -102,14 +96,13 @@
     }
 
     function showUpdate(id) {
-        $("#divUpdate").show();
-        $.each(datetemp,function (index,Yywsr) {
-          if(Yywsr.id==id){//如果传过来的id等于全局变量里面的循环里的id
+        $("#divUpdate").toggle();
+        $.each(datetemp,function (index,Cwfy) {
+          if(Cwfy.id==id){//如果传过来的id等于全局变量里面的循环里的id
              $("#upId").val(id);
-             $("#upName").val(Yywsr.name);
-             $("#upMoney").val(Yywsr.money);
-             $("#upIncomeMonth").val(new Date(Yywsr.incomeMonth).Format("yyyy-MM"));
-             $("#upWriteDate").val(new Date(Yywsr.writeDate).Format("yyyy-MM-dd HH:mm:ss"));
+             $("#money").val(Cwfy.financeFee);
+             $("#payoutMonth1").val(new Date(Cwfy.payoutMonth).Format("yyyy-MM"));
+             $("#writeDate1").val(new Date(Cwfy.writeDate).Format("yyyy-MM-dd HH:mm:ss"));
           }
         })
     }
@@ -135,26 +128,24 @@
     });
 
     var datetemp;//全局变量用于存储数据
-    function YywsrQuery() {
+    function CwfyQuery() {
         $.ajax({
            type:'post',
-           url: '/cost_accounting/YywsrQuery',
-           data: {minMoney:$("#minMoney").val(),maxMoney:$("#maxMoney").val(),
-                  dateStart:$("#dateStart").val(),dateEnd:$("#dateEnd").val()},
+           url: '/cost_accounting/CwfyQuery',
+           data:{payoutMonth:$("#payoutMonth").val()},
            success:function (result) {
                datetemp = result;
                var tb = $("#tb");
                tb.nextAll().remove();//清空tr防止重复追加数据
                var msg='';
                $.each(result,function (index,data) {
-                   var incomeMonth=new Date(data.incomeMonth).Format("yyyy-MM");
-                   var writeDate=new Date(data.writeDate).Format("yyyy-MM-dd HH:mm:ss");
+                   var payoutMonth1=new Date(data.payoutMonth).Format("yyyy-MM");
+                   var writeDate2=new Date(data.writeDate).Format("yyyy-MM-dd HH:mm:ss");
                    msg +="<tr>" +
                          "<td align='center'>"+data.id+"</td>"+
-                         "<td align='center'>"+data.name+"</td>"+
-                         "<td align='center'>"+data.money+"</td>"+
-                         "<td align='center'>"+incomeMonth+"</td>"+
-                         "<td align='center'>"+writeDate+"</td>"+
+                         "<td align='center'>"+data.financeFee+"</td>"+
+                         "<td align='center'>"+payoutMonth1+"</td>"+
+                         "<td align='center'>"+writeDate2+"</td>"+
                          "<td align='center'>" +
                          "<button class='btn-primary' onclick='showUpdate("+data.id+")'>修改</button>" +
                          "<button class='btn-danger' onclick='YywsrDelete("+data.id+")'>删除</button></td>"+
@@ -168,6 +159,8 @@
         });
     }
 </script>
+
+
 <script type="text/javascript">
     //日期插件的使用
     laydate.render({
@@ -191,14 +184,21 @@
     });
 
     laydate.render({
-        elem: '#dateStart'
+        elem: '#upWriteDate1'
         ,type: 'datetime'
     });
 
+
     laydate.render({
-        elem: '#dateEnd'
-        ,type: 'datetime'
+        elem: '#payoutMonth'
+        ,type: 'month'
     });
+
+    laydate.render({
+        elem: '#payoutMonth1'
+        ,type: 'month'
+    });
+;
 
 </script>
 </body>
