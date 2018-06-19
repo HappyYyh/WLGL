@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.cost_accounting.GifyMapper" >
+  <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.cost_accounting.Gify" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="OfficeFee" property="officeFee" jdbcType="DOUBLE" />
+    <result column="HouseRent" property="houseRent" jdbcType="DOUBLE" />
+    <result column="WaterElecFee" property="waterElecFee" jdbcType="DOUBLE" />
+    <result column="PhoneFee" property="phoneFee" jdbcType="DOUBLE" />
+    <result column="OtherPayout" property="otherPayout" jdbcType="DOUBLE" />
+    <result column="PayoutMonth" property="payoutMonth" jdbcType="TIMESTAMP" />
+    <result column="WriteDate" property="writeDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, OfficeFee, HouseRent, WaterElecFee, PhoneFee, OtherPayout, PayoutMonth, WriteDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_23_glfy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_23_glfy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Gify" >
+    insert into t_23_glfy (id, OfficeFee, HouseRent, 
+      WaterElecFee, PhoneFee, OtherPayout, 
+      PayoutMonth, WriteDate)
+    values (#{id,jdbcType=INTEGER}, #{officeFee,jdbcType=DOUBLE}, #{houseRent,jdbcType=DOUBLE}, 
+      #{waterElecFee,jdbcType=DOUBLE}, #{phoneFee,jdbcType=DOUBLE}, #{otherPayout,jdbcType=DOUBLE}, 
+      #{payoutMonth,jdbcType=TIMESTAMP}, #{writeDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Gify" >
+    insert into t_23_glfy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="officeFee != null" >
+        OfficeFee,
+      </if>
+      <if test="houseRent != null" >
+        HouseRent,
+      </if>
+      <if test="waterElecFee != null" >
+        WaterElecFee,
+      </if>
+      <if test="phoneFee != null" >
+        PhoneFee,
+      </if>
+      <if test="otherPayout != null" >
+        OtherPayout,
+      </if>
+      <if test="payoutMonth != null" >
+        PayoutMonth,
+      </if>
+      <if test="writeDate != null" >
+        WriteDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="officeFee != null" >
+        #{officeFee,jdbcType=DOUBLE},
+      </if>
+      <if test="houseRent != null" >
+        #{houseRent,jdbcType=DOUBLE},
+      </if>
+      <if test="waterElecFee != null" >
+        #{waterElecFee,jdbcType=DOUBLE},
+      </if>
+      <if test="phoneFee != null" >
+        #{phoneFee,jdbcType=DOUBLE},
+      </if>
+      <if test="otherPayout != null" >
+        #{otherPayout,jdbcType=DOUBLE},
+      </if>
+      <if test="payoutMonth != null" >
+        #{payoutMonth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="writeDate != null" >
+        #{writeDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Gify" >
+    update t_23_glfy
+    <set >
+      <if test="officeFee != null" >
+        OfficeFee = #{officeFee,jdbcType=DOUBLE},
+      </if>
+      <if test="houseRent != null" >
+        HouseRent = #{houseRent,jdbcType=DOUBLE},
+      </if>
+      <if test="waterElecFee != null" >
+        WaterElecFee = #{waterElecFee,jdbcType=DOUBLE},
+      </if>
+      <if test="phoneFee != null" >
+        PhoneFee = #{phoneFee,jdbcType=DOUBLE},
+      </if>
+      <if test="otherPayout != null" >
+        OtherPayout = #{otherPayout,jdbcType=DOUBLE},
+      </if>
+      <if test="payoutMonth != null" >
+        PayoutMonth = #{payoutMonth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="writeDate != null" >
+        WriteDate = #{writeDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Gify" >
+    update t_23_glfy
+    set OfficeFee = #{officeFee,jdbcType=DOUBLE},
+      HouseRent = #{houseRent,jdbcType=DOUBLE},
+      WaterElecFee = #{waterElecFee,jdbcType=DOUBLE},
+      PhoneFee = #{phoneFee,jdbcType=DOUBLE},
+      OtherPayout = #{otherPayout,jdbcType=DOUBLE},
+      PayoutMonth = #{payoutMonth,jdbcType=TIMESTAMP},
+      WriteDate = #{writeDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="query" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Gify" resultType="com.njxzc.wlgl.pojo.cost_accounting.Gify">
+      select * from t_23_glfy
+      <where>
+        <if test="officeFee!=null and officeFee!='' ">
+          and OfficeFee = #{officeFee,jdbcType=DOUBLE}
+        </if>
+      </where>
+  </select>
+</mapper>
