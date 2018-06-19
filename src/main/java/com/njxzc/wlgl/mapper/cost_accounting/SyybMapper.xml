@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njxzc.wlgl.mapper.cost_accounting.SyybMapper">
+    <resultMap id="BaseResultMap" type="com.njxzc.wlgl.pojo.cost_accounting.Syyb">
+        <id column="ID" property="ID" jdbcType="INTEGER"/>
+        <result column="Category" property="category" jdbcType="VARCHAR"/>
+        <result column="MidCategory" property="midCategory" jdbcType="VARCHAR"/>
+        <result column="SubType" property="subType" jdbcType="VARCHAR"/>
+        <result column="Money" property="money" jdbcType="DOUBLE"/>
+        <result column="StatStartDate" property="statStartDate" jdbcType="TIMESTAMP"/>
+        <result column="StatEndDate" property="statEndDate" jdbcType="TIMESTAMP"/>
+        <result column="BalanceDate" property="balanceDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, Category, MidCategory, SubType, Money, StatStartDate, StatEndDate, BalanceDate
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_44_syyb
+        where ID = #{ID,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_44_syyb
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Syyb">
+    insert into t_44_syyb (ID, Category, MidCategory, 
+      SubType, Money, StatStartDate, 
+      StatEndDate, BalanceDate)
+    values (#{ID,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{midCategory,jdbcType=VARCHAR}, 
+      #{subType,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, #{statStartDate,jdbcType=TIMESTAMP}, 
+      #{statEndDate,jdbcType=TIMESTAMP}, #{balanceDate,jdbcType=TIMESTAMP})
+  </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.wlgl.pojo.cost_accounting.Syyb">
+        update t_44_syyb
+        <set>
+            <if test="category != null">
+                Category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="midCategory != null">
+                MidCategory = #{midCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="subType != null">
+                SubType = #{subType,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                Money = #{money,jdbcType=DOUBLE},
+            </if>
+            <if test="statStartDate != null">
+                StatStartDate = #{statStartDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="statEndDate != null">
+                StatEndDate = #{statEndDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="balanceDate != null">
+                BalanceDate = #{balanceDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{ID,jdbcType=INTEGER}
+    </update>
+
+    <select id="queryByCondition" resultType="com.njxzc.wlgl.pojo.cost_accounting.Syyb">
+        select
+        <include refid="Base_Column_List"/>
+        from t_44_syyb
+        <where>
+            <if test="startTime!=null">
+                and BalanceDate >= #{startTime}
+            </if>
+            <if test="endTime!=null">
+                and BalanceDate &lt;= #{endTime}
+            </if>
+        </where>
+    </select>
+
+</mapper>
