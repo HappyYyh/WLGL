@@ -54,7 +54,7 @@
 
 
         function queryGify() {
-            $("#tb  tr:not(:first)").empty();
+            $("#tb1  tr:not(:first)").empty();
             $.ajax({
                 type:'post',
                 url: '/cost_accounting/queryGify',
@@ -62,6 +62,7 @@
                 data: '{"officeFee":"'+$("#OfficeFee").val()+'"}',
                 success:function (result) {
                     var trc =$("#tb");
+                    trc.nextAll().remove();
                     var msg = "";
                     $.each(result,function (index,gify) {
                         var payoutMonth = new Date(gify.payoutMonth).Format("yyyy-MM");
@@ -145,13 +146,13 @@
         <div style="height: 60%">
             <div align="center" style="margin-top: 50px">
                 <form method="post" name="form_search">
-                <input type="text" placeholder="办公费用" id="OfficeFee" name="officeFee"/>
+                    <input type="text" placeholder="办公费用" id="OfficeFee" name="officeFee"/>
                 </form>
                 <button onclick="queryGify()"  class="btn-primary">查询</button>
                 <button onclick="showAdd()"  class="btn-success">添加</button>
 
             </div>
-            <table class="table table-bordered" style="margin-top: 20px">
+            <table id="tb1" class="table table-bordered" style="margin-top: 20px">
                 <thead>
                 <th>序号</th>
                 <th>办公费用</th>
@@ -221,29 +222,29 @@
 
 
 
-<script type="text/javascript">
-    //日期插件的使用
-    laydate.render({
-        elem: '#payoutMonth'
-        ,type: 'month'
-    });
+    <script type="text/javascript">
+        //日期插件的使用
+        laydate.render({
+            elem: '#payoutMonth'
+            ,type: 'month'
+        });
 
-    laydate.render({
-        elem: '#writeDate'
-        ,type: 'datetime'
-    });
+        laydate.render({
+            elem: '#writeDate'
+            ,type: 'datetime'
+        });
 
-    laydate.render({
-        elem: '#uppayoutMonth'
-        ,type: 'month'
-    });
+        laydate.render({
+            elem: '#uppayoutMonth'
+            ,type: 'month'
+        });
 
-    laydate.render({
-        elem: '#upwriteDate'
-        ,type: 'datetime'
-    });
+        laydate.render({
+            elem: '#upwriteDate'
+            ,type: 'datetime'
+        });
 
-</script>
+    </script>
 </div>
 </body>
 </html>
